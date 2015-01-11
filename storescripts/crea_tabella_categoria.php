@@ -2,7 +2,7 @@
 require 'connect_to_mysql.php';
 
 $sqlCommand = "CREATE TABLE categoria (
-    cat_code int(8) NOT NULL,
+    cat_code int(8)  auto_increment NOT NULL,
     parent_code int(8),
     name varchar(24) NOT NULL,
     PRIMARY KEY (cat_code),

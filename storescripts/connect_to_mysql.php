@@ -11,9 +11,6 @@ $db_name = "siacommerce"; //nome del database
 
 // Procedo alla connessione con i dati sopra inseriti 
 $db = new mysqli($db_host, $db_username, $db_pass, $db_name) or die(mysql_error());;//probabilmente credenziali sbagliate
-mysql_select_db("$db_name") or die ("no database");//probabilmente ttabella inesistente        
-/* mysql_connect() è una funzione deprecated, vedere file connect.php per un 
- * altro esempio di connessione usando sintassi a oggetti.
- */
+mysql_select_db("$db_name") or die ("no database");//probabilmente tabella inesistente  
 ?>
 

@@ -7,6 +7,7 @@ $sqlCommand = "CREATE TABLE amministratore (
     username varchar(24) NOT NULL,
     password varchar(24) NOT NULL,
     last_log_date date NOT NULL,
+    email varchar (24) NOT NULL,
     PRIMARY KEY (id),
     UNIQUE KEY username (username)
     ) ";

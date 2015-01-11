@@ -3,7 +3,7 @@
 require 'connect_to_mysql.php';
 
 $sqlCommand = "CREATE TABLE prodotto (
-    prod_code int(4) NOT NULL,
+    prod_code int(8)  auto_increment NOT NULL,
     prod_name varchar(20) NOT NULL,
     instock int(4) NOT NULL,
     price int(8),
