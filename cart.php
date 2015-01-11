@@ -1,10 +1,11 @@
-<body> 
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Il tuo carrello</title>
     <link rel="stylesheet" href="style/style.css" type="text/css" media="screen" />
 </head>
+ 
+
 <body>
     <div align="center" id="mainWrapper">
         <?php include_once("./template_header.php"); ?>
