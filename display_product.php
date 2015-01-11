@@ -69,3 +69,39 @@ else
          
     </div>
 </body>
+
+
+
+
+
+
+
+
+
+    <div align="center" id="mainWrapper">
+        
+
+
+
+
+
+        <div id="pageContent">
+            <table width="100%" border="0" cellspacing="0" cellpadding="15">
+                <tr>
+                    <td width="19%" valign="top"><img src="inventory_images/11000001.jpg" width="142" height="188" alt="maglietta celtics" /><br />
+                        <a href="inventory_images/11000001.jpg">View Full Size Image</a></td>
+                    <td width="81%" valign="top"><h3>maglietta celtics</h3>
+                        <p>$38<br />
+                            <br />
+                            <br />
+                            <br />
+                                                        <br />
+                        </p>
+                        <form id="form1" name="form1" method="post" action="cart.php">
+                            <input type="hidden" name="pid" id="pid" value="11000001" />
+                            <input type="submit" name="button" id="button" value="Add to Shopping Cart" />
+                        </form>
+                    </td>
+                </tr>
+            </table>
+        </div>
