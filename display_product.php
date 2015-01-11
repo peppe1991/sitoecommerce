@@ -31,9 +31,9 @@ else
                 <?php echo $row["prod_name"];
                 
             echo '<img src="./inventory_images/' . $_GET["p"]. '.jpg ">' ;
-            echo 'Prezzo: ' . $row["price"] . '€';
-            echo $row["description"];
-            echo 'Disponibili: ' . $row["instock"] . ' pz';
+            echo 'Prezzo: ' . $row["price"] . '€\n';
+            echo $row["description"] . '\n';
+            echo 'Disponibili: ' . $row["instock"] . ' pz\n';
            
             }
             ?>
