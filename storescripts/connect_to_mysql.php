@@ -5,9 +5,9 @@
 */ 
 //Variabili contenenti i dati d'accesso
 $db_host = "localhost"; //Locazione del database
-$db_username = "builder";  //nome dell'utente 
-$db_pass = "diciotto";  //password dell'utente 
-$db_name = "siacommerce"; //nome del database
+$db_username = "root";  //nome dell'utente 
+$db_pass = "";  //password dell'utente 
+$db_name = "ecommerce"; //nome del database
 
 // Procedo alla connessione con i dati sopra inseriti 
 $db = new mysqli($db_host, $db_username, $db_pass, $db_name) or die(mysql_error());;//probabilmente credenziali sbagliate

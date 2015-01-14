@@ -6,7 +6,7 @@ $sqlCommand = "CREATE TABLE METODOPAG (
     met_code int(2) NOT NULL auto_increment,
     met_name varchar(20) NOT NULL,
     card_code int(16) ,
-    FOREIGN KEY(cat_code) 
+    PRIMARY KEY (met_code),
     )";
 
 if (mysql_query($sqlCommand)) 
