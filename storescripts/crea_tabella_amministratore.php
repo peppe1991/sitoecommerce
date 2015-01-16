@@ -1,8 +1,8 @@
 <?php
 
-require 'connect_to_mysql.php';
+require_once 'connect_to_mysql.php';
 
-$sqlCommand = "CREATE TABLE amministratore (
+$sqlCommand = "CREATE TABLE IF NOT EXISTS amministratore (
     id int(4) NOT NULL auto_increment,
     username varchar(24) NOT NULL,
     password varchar(24) NOT NULL,
@@ -14,11 +14,11 @@ $sqlCommand = "CREATE TABLE amministratore (
 
 if (mysql_query($sqlCommand)) 
 {
-    echo ("tabella AMMINISTRATORE creata correttamente");
+    echo ("tabella AMMINISTRATORE creata correttamente"."<br>");
 }
 else
 {
-    echo ("ERRORE FATALE, tabella AMMINISTRATORE non creata");
+    echo ("ERRORE FATALE, tabella AMMINISTRATORE non creata"."<br>");
 }
 
 ?>   

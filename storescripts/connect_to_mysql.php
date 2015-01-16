@@ -7,7 +7,7 @@
 $db_host = "localhost"; //Locazione del database
 $db_username = "root";  //nome dell'utente 
 $db_pass = "";  //password dell'utente 
-$db_name = "ecommerce"; //nome del database
+$db_name = "sito"; //nome del database
 
 // Procedo alla connessione con i dati sopra inseriti 
 $db = new mysqli($db_host, $db_username, $db_pass, $db_name) or die(mysql_error());;//probabilmente credenziali sbagliate

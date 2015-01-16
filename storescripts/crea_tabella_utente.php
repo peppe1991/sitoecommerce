@@ -2,7 +2,7 @@
 
 require 'connect_to_mysql.php';
 
-$sqlCommand = "CREATE TABLE utente (
+$sqlCommand = "CREATE TABLE IF NOT EXISTS utente (
     id int(32) NOT NULL auto_increment,
     username varchar(24) NOT NULL,
     password varchar(24) NOT NULL,
@@ -17,11 +17,11 @@ $sqlCommand = "CREATE TABLE utente (
 
 if (mysql_query($sqlCommand)) 
 {
-    echo ("tabella UTENTE creata correttamente");
+    echo ("tabella UTENTE creata correttamente"."<br>");
 }
 else
 {
-    echo ("ERRORE FATALE, tabella UTENTE non creata");
+    echo ("ERRORE FATALE, tabella UTENTE non creata"."<br>");
 }
 
 ?>   

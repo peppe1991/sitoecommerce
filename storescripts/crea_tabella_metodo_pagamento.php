@@ -2,7 +2,7 @@
 
 require 'connect_to_mysql.php';
 
-$sqlCommand = "CREATE TABLE METODOPAG (
+$sqlCommand = "CREATE TABLE IF NOT EXISTS METODOPAG (
     met_code int(2) NOT NULL auto_increment,
     met_name varchar(20) NOT NULL,
     card_code int(16) ,
@@ -11,11 +11,11 @@ $sqlCommand = "CREATE TABLE METODOPAG (
 
 if (mysql_query($sqlCommand)) 
 {
-    echo ("tabella METODOPAG creata correttamente");
+    echo ("tabella METODOPAG creata correttamente"."<br>");
 }
 else
 {
-    echo ("ERRORE FATALE, tabella METODOPAG non creata");
+    echo ("ERRORE FATALE, tabella METODOPAG non creata"."<br>");
 }
 
 ?>   

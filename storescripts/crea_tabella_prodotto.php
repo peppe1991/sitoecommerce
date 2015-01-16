@@ -2,7 +2,7 @@
 
 require 'connect_to_mysql.php';
 
-$sqlCommand = "CREATE TABLE prodotto (
+$sqlCommand = "CREATE TABLE IF NOT EXISTS prodotto (
     prod_code int(8)  auto_increment NOT NULL,
     prod_name varchar(20) NOT NULL,
     instock int(4) NOT NULL,
@@ -17,11 +17,11 @@ $sqlCommand = "CREATE TABLE prodotto (
 
 if (mysql_query($sqlCommand)) 
 {
-    echo ("tabella PRODOTTO creata correttamente");
+    echo ("tabella PRODOTTO creata correttamente"."<br>");
 }
 else
 {
-    echo ("ERRORE FATALE, tabella PRODOTTO non creata");
+    echo ("ERRORE FATALE, tabella PRODOTTO non creata"."<br>");
 }
 
 ?>   

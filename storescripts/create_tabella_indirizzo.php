@@ -2,7 +2,7 @@
 
 require 'connect_to_mysql.php';
 
-$sqlCommand = "CREATE TABLE indirizzo (
+$sqlCommand = "CREATE TABLE IF NOT EXISTS indirizzo (
    
     cod int(8) auto_increment NOT NULL,
     id int(8) NOT NULL,
@@ -18,11 +18,11 @@ $sqlCommand = "CREATE TABLE indirizzo (
 
 if (mysql_query($sqlCommand)) 
 {
-    echo ("tabella UTENTE creata correttamente");
+    echo ("tabella UTENTE creata correttamente"."<br>");
 }
 else
 {
-    echo ("ERRORE FATALE, tabella UTENTE non creata");
+    echo ("ERRORE FATALE, tabella UTENTE non creata"."<br>");
 }
 
 ?>   

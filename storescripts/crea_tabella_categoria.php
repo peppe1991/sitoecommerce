@@ -1,7 +1,7 @@
 <?php
 require 'connect_to_mysql.php';
 
-$sqlCommand = "CREATE TABLE categoria (
+$sqlCommand = "CREATE TABLE IF NOT EXISTS categoria (
     cat_code int(8)  auto_increment NOT NULL,
     parent_code int(8),
     name varchar(24) NOT NULL,
@@ -11,11 +11,11 @@ $sqlCommand = "CREATE TABLE categoria (
     )";
 if (mysql_query($sqlCommand)) 
 {
-    echo ("tabella CATEGORIA creata correttamente");
+    echo ("tabella CATEGORIA creata correttamente"."<br>");
 }
 else
 {
-    echo ("ERRORE FATALE, tabella CATEGORIA non creata");
+    echo ("ERRORE FATALE, tabella CATEGORIA non creata"."<br>");
 }
 
 ?>

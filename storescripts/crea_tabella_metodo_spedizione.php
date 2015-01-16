@@ -2,7 +2,7 @@
 
 require 'connect_to_mysql.php';
 
-$sqlCommand = "CREATE TABLE metodospedizione (
+$sqlCommand = "CREATE TABLE IF NOT EXISTS metodospedizione (
     met_code int(2) NOT NULL auto_increment,
     met_name varchar(20) NOT NULL,
     met_price int(3) NOT NULL,
@@ -12,11 +12,11 @@ $sqlCommand = "CREATE TABLE metodospedizione (
 
 if (mysql_query($sqlCommand)) 
 {
-    echo ("tabella METODOSPEDIZIONE creata correttamente");
+    echo ("tabella METODOSPEDIZIONE creata correttamente"."<br>");
 }
 else
 {
-    echo ("ERRORE FATALE, tabella METODOSPEDIZIONE non creata");
+    echo ("ERRORE FATALE, tabella METODOSPEDIZIONE non creata"."<br>");
 }
 
 ?>   

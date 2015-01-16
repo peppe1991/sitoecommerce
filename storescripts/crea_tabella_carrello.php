@@ -2,7 +2,7 @@
 
 require 'connect_to_mysql.php';
 
-$sqlCommand = "CREATE TABLE carrello (
+$sqlCommand = "CREATE TABLE IF NOT EXISTS carrello (
     prod_code int(4) NOT NULL,
     user_id int(32) NOT NULL,
     quantity int (16) NOT NULL,
@@ -14,11 +14,11 @@ $sqlCommand = "CREATE TABLE carrello (
 
 if (mysql_query($sqlCommand) or die (mysql_error())) 
 {
-    echo ("tabella CARRELLO creata correttamente");
+    echo ("tabella CARRELLO creata correttamente"."<br>");
 }
 else
 {
-    echo ("ERRORE FATALE, tabella CARRELLO non creata");
+    echo ("ERRORE FATALE, tabella CARRELLO non creata"."<br>");
 }
 
 ?>   
