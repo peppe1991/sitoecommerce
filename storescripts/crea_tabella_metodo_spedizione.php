@@ -3,7 +3,7 @@
 require_once 'connect_to_mysql.php';
 
 $sqlCommand = "CREATE TABLE IF NOT EXISTS metodospedizione (
-    met_code int(2) NOT NULL auto_increment,
+    met_code int(4) NOT NULL auto_increment,
     met_name varchar(20) NOT NULL,
     met_price int(3) NOT NULL,
     PRIMARY KEY (met_code),
