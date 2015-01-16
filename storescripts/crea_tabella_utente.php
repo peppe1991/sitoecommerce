@@ -1,6 +1,6 @@
 <?php
 
-require 'connect_to_mysql.php';
+require_once 'connect_to_mysql.php';
 
 $sqlCommand = "CREATE TABLE IF NOT EXISTS utente (
     id int(32) NOT NULL auto_increment,

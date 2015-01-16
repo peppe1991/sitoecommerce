@@ -1,5 +1,5 @@
 <?php
-require 'connect_to_mysql.php';
+require_once 'connect_to_mysql.php';
 
 $sqlCommand = "CREATE TABLE IF NOT EXISTS categoria (
     cat_code int(8)  auto_increment NOT NULL,
