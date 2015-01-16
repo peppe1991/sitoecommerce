@@ -6,8 +6,8 @@ $sqlCommand = "CREATE TABLE IF NOT EXISTS carrello (
     id int(4) NOT NULL auto_increment,
     user_id int(32) NOT NULL,
     data date NOT NULL,
-    met_code_pagamento int(4) NOT NULL,
-    met_code_spedizione int(4) NOT NULL,
+    pag_code int(4) NOT NULL,
+    sped_code int(4) NOT NULL,
     FOREIGN KEY (met_code_pagamento) REFERENCES metodopag(met_code),
     FOREIGN KEY(met_code_spedizione) REFERENCES metodospedizione(met_code)
     )";
