@@ -2,11 +2,11 @@
 
 require_once 'connect_to_mysql.php';
 
-$sqlCommand = "CREATE TABLE IF NOT EXISTS METODOPAG (
-    met_code int(4) NOT NULL auto_increment,
+$sqlCommand = "CREATE TABLE IF NOT EXISTS metodopag (
+    met_code_pag int(4) auto_increment NOT NULL,
     met_name varchar(20) NOT NULL,
-    card_code int(16) ,
-    PRIMARY KEY (met_code),
+    card_code int(16),
+    PRIMARY KEY (met_code_pag),
     )";
 
 if (mysql_query($sqlCommand)) 

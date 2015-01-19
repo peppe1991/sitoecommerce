@@ -5,7 +5,7 @@
 // Connect to the MySQL database  
 require "connect_to_mysql.php";  
 
-$sqlCommand = "CREATE TABLE transactions (
+$sqlCommand = "CREATE TABLE IF NOT EXIST transactions (
 		 		 id int(11) NOT NULL auto_increment,
 				 product_id_array varchar(255) NOT NULL,
 		 		 payer_email varchar(255) NOT NULL,
