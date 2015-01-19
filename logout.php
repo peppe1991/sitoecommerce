@@ -8,5 +8,5 @@ $_SESSION["username"] = "guest";
 Sei stato disconnesso con successo.
 
 <?php
-header ("location: http://localhost/siacommerce/index.php");
+header ("location: index.php");
 ?>

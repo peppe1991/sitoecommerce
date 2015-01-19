@@ -44,16 +44,29 @@ if (isset($_POST["username"]) && isset($_POST["password"])
         /*Aggiungiamo al database un nuovo utente con i dati appena inseriti
          * 
          */
-        $sqlCommand = mysql_query("INSERT INTO siacommerce.utente ( username, password, name, surname, cod_fisc, last_log_date)
+        $sqlCommand = mysql_query("INSERT INTO utente ( username, password, name, surname, cod_fisc, last_log_date)
             VALUES ('$username', '$password', '$name', '$surname', '$fiscode', NOW()) ") or die(mysql_error());
-        $query = mysql_query("SELECT id FROM siacommerce.utente WHERE username = ". $username) or die (mysql_error());
-        $row = mysql_fetch_row($query);
-        $id = $row["id"];
-        $sqlCommand2 = mysql_query("INSERT INTO siacommerce.carrello (user_id)
-                VALUES ('$id')") or die (mysql_error());
-        exit();
+
+      //  $query = mysql_query("SELECT id FROM utente WHERE username = ". $username) or die (mysql_error());
+      //  $row = mysql_fetch_row($query);
+      //  $id = $row["id"];
+    //    $sqlCommand2 = mysql_query("INSERT INTO carrello (user_id)
+     //           VALUES ('$id')") or die (mysql_error());
+        
+        session_start();
+        $query = mysql_query("SELECT id FROM utente WHERE username='$username' AND password='$password' LIMIT 1");
+        while ($row = mysql_fetch_array($query)) {
+            $id = $row["id"];
+        }
+        $_SESSION["userid"] = $id;
+        $_SESSION["username"] = $username;
+        $_SESSION["password"] = $password;
+        
+        header("location: ./wellcome.php");
     }
 }
+
+
 ?>
 <!DOCTYPE html>
     <head>
