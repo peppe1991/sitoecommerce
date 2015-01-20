@@ -6,8 +6,8 @@
 session_start(); /*
  * necessario quando si vuole lavorare con le variabili si sessione
  */
-$location_admin_login = "location: admin_login.php"; /*
- * location della pagina di login
+$location_admin_login = "location: admin_login.php"; 
+ /* * location della pagina di login
  */
 if (!isset($_SESSION["admin_name"]))
 {

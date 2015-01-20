@@ -122,7 +122,7 @@ if ($productCount > 0) { //se trovo almeno un oggetto nell'inventario
 
     <body>
         <div align="center" id="mainWrapper">
-            <?php include_once("../template_header.php"); ?>
+            <?php include_once("template_header.php"); ?>
             <div id="pageContent"><br />
                 <!-- Aggiungo un pulsante che faccia subito raggiungere la parte
                 della pagina che contiene il form per aggiungee un nuovo
@@ -217,7 +217,7 @@ if ($productCount > 0) { //se trovo almeno un oggetto nell'inventario
                 <br />
                 <br />
             </div>
-            <?php include_once("../template_footer.php"); ?>
+            <?php include_once("template_footer.php"); ?>
         </div>
     </body>
 </html>

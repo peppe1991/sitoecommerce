@@ -82,7 +82,7 @@ if (isset($_GET['pid'])) /* se è settata la variabile che passiamo dall'altra
 
     <body>
         <div align="center" id="mainWrapper">
-<?php include_once("../template_header.php"); ?>
+<?php include_once("template_header.php"); ?>
             <div id="pageContent"><br />
                 <a name="inventoryForm" id="inventoryForm"></a>
                 <h3>
@@ -152,7 +152,7 @@ if (isset($_GET['pid'])) /* se è settata la variabile che passiamo dall'altra
                 <br />
                 <br />
             </div>
-<?php include_once("../template_footer.php"); ?>
+<?php include_once("template_footer.php"); ?>
         </div>
     </body>
 </html>

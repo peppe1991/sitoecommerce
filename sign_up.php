@@ -72,12 +72,12 @@ if (isset($_POST["username"]) && isset($_POST["password"])
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>Registrazione nuovo utente</title>
-        <link rel="stylesheet" href="../style/style.css" type="text/css" media="screen" />
+        <link rel="stylesheet" href="style/style.css" type="text/css" media="screen" />
     </head>
 
     <body>
         <div align="center" id="mainWrapper">
-            <?php include_once("./template_header.php"); ?>
+            <?php include_once("template_header.php"); ?>
             <div id="pageContent"><br />
                 <div align="left" style="margin-left:24px;">
                     <h2>Prego, inserire i dati del nuovo utente</h2>
@@ -109,7 +109,7 @@ if (isset($_POST["username"]) && isset($_POST["password"])
                 <br />
                 <br />
             </div>
-            <?php include_once("../template_footer.php"); ?>
+            <?php include_once("template_footer.php"); ?>
         </div>
     </body>
 </html>

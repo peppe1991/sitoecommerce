@@ -4,7 +4,7 @@ session_start(); //facciamo in modo di poter maneggiare variabili di sessione
  * il processo di login. Lo spediamo direttamente alla pagina index per gli 
  * amministratori
  */
-if (isset($_SESSION["manager"])) {
+if (isset($_SESSION["userid"])) {
     header("location: index.php");
     exit();
 }
@@ -56,12 +56,12 @@ if (isset($_POST["username"]) && isset($_POST["password"])) {
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>Pagina di Login</title>
-        <link rel="stylesheet" href="../style/style.css" type="text/css" media="screen" />
+        <link rel="stylesheet" href="style/style.css" type="text/css" media="screen" />
     </head>
 
     <body>
         <div align="center" id="mainWrapper">
-            <?php include_once("./template_header.php"); ?>
+            <?php include_once("template_header.php"); ?>
             <div id="pageContent"><br />
                 <div align="left" style="margin-left:24px;">
                     <h2>Prego, inserire i propri dati di accesso</h2>
@@ -78,12 +78,12 @@ if (isset($_POST["username"]) && isset($_POST["password"])) {
                         <input type="submit" name="button" id="button" value="Login" />
 
                     </form>
-                    <p>&nbsp; </p>
                 </div>
                 <br />
                 <br />
                 <br />
             </div>
-        </div>
+                    <?php include_once("template_footer.php"); ?>
+</div>
     </body>
 </html>

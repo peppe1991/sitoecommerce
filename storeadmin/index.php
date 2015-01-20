@@ -11,13 +11,13 @@ include "user_verify_script.php"
 
     <body>
         <div align="center" id="mainWrapper">
-            <?php include_once("../template_header.php"); ?>
+            <?php include_once("template_header.php"); ?>
             <div id="pageContent">
                 <p><h2>Benvenuto nel pannello di amministrazione dello store. </h2></p>
                 <a href="inventory_list.php"> Modifica Inventario </a>
             </div>
             <!--metterci altra roba giusto per dargli un senso-->
-            <?php include_once("../template_footer.php"); ?>
+            <?php include_once("template_footer.php"); ?>
         </div>
     </body>
 </html>
