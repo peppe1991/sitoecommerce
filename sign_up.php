@@ -20,7 +20,7 @@ if (isset($_POST["username"]) && isset($_POST["password"])
      * applicato nella pagina di amministrazione
      */
     $username = preg_replace('#[^A-Za-z0-9]#i', '', $_POST["username"]); 
-    $password = preg_replace('#[^A-Za-z0-9]#i', '', $_POST["password"]);
+    $password = md5(preg_replace('#[^A-Za-z0-9]#i', '', $_POST["password"]));
     $name = preg_replace('#[^A-Za-z]#i','',$_POST["name"]);
     $surname = preg_replace('#[^A-Za-z]#i','',$_POST["surname"]);
     $fiscode = preg_replace('#[^A-Za-z0-9]#i','',$_POST["fiscode"]);
@@ -44,6 +44,7 @@ if (isset($_POST["username"]) && isset($_POST["password"])
         /*Aggiungiamo al database un nuovo utente con i dati appena inseriti
          * 
          */
+        
         $sqlCommand = mysql_query("INSERT INTO utente ( username, password, name, surname, cod_fisc, last_log_date)
             VALUES ('$username', '$password', '$name', '$surname', '$fiscode', NOW()) ") or die(mysql_error());
 

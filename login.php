@@ -22,7 +22,7 @@ if (isset($_POST["username"]) && isset($_POST["password"])) {
      * applicato nella pagina di amministrazione
      */
     $username = preg_replace('#[^A-Za-z0-9]#i', '', $_POST["username"]); 
-    $password = preg_replace('#[^A-Za-z0-9]#i', '', $_POST["password"]);
+    $password = md5(preg_replace('#[^A-Za-z0-9]#i', '', $_POST["password"]));
     /* come nell'altra pagina includiamo lo script di connessione al database 
      * ed effettuiamo la query "di controllo"
      */
