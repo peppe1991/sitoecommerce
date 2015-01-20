@@ -14,8 +14,12 @@ include "user_verify_script.php"
             <?php include_once("template_header.php"); ?>
             <div id="pageContent">
                 <p><h2>Benvenuto nel pannello di amministrazione dello store. </h2></p>
-                <a href="inventory_list.php"> Modifica Inventario </a>
-            </div>
+            <table id="menu" width="600px">
+                <tr>
+                    <td><b> <a href="inventory_list.php"> <img src="../style/elencoprodotti.jpg" height="100px"> <br> Aggiungi Prodotto </a>
+                </b></td> <td> Modifica Categorie </td> <td> Visualizza Lista Prodotti</td> <td>Fatture</td>
+                </tr> 
+                </table></div>
             <!--metterci altra roba giusto per dargli un senso-->
             <?php include_once("template_footer.php"); ?>
         </div>

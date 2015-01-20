@@ -65,7 +65,7 @@ if (isset($_POST['product_name'])) /* se è stato cliccato il bottone per
         exit();
     }
     // Se non abbiamo trovato un oggetto uguale ne aggiungiamo uno nuovo al DB
-    $sql = mysql_query ("INSERT INTO `siacommerce`.`prodotto` (`prod_code`, `prod_name`, `instock`, `price`, `cat_code`, `brand`, `description`, `date_added`) 
+    $sql = mysql_query("INSERT INTO prodotto ( prod_code, prod_name, instock, price, cat_code, brand, description, date_added) 
         VALUES ('$product_code', '$product_name', '1', '$price', '$subcategory', '$brand', '$description', NOW())") or die(mysql_error());
     /*$sql = mysql_query("INSERT INTO prodotto (prod_code, prod_name, instock, price, category, brand, description, date_added) 
         VALUES('$product_code, $product_name',1,'$price',
