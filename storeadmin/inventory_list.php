@@ -51,7 +51,7 @@ if (isset($_POST['product_name'])) /* se è stato cliccato il bottone per
      * memorizzare nella variabile. Tale funzione produce un errore se viene 
      * utilizzata mentre non si è connessi al database 
      */
-    $product_code = mysql_real_escape_string($_POST['code']);
+   // $product_code = mysql_real_escape_string($_POST['code']);
     $product_name = mysql_real_escape_string($_POST['product_name']);
     $price = mysql_real_escape_string($_POST['price']);
     $subcategory = mysql_real_escape_string($_POST['category']);
@@ -65,8 +65,8 @@ if (isset($_POST['product_name'])) /* se è stato cliccato il bottone per
         exit();
     }
     // Se non abbiamo trovato un oggetto uguale ne aggiungiamo uno nuovo al DB
-    $sql = mysql_query("INSERT INTO prodotto ( prod_code, prod_name, instock, price, cat_code, brand, description, date_added) 
-        VALUES ('$product_code', '$product_name', '1', '$price', '$subcategory', '$brand', '$description', NOW())") or die(mysql_error());
+    $sql = mysql_query("INSERT INTO prodotto ( prod_name, instock, price, cat_code, brand, description, date_added) 
+        VALUES ( '$product_name', '1', '$price', '$subcategory', '$brand', '$description', NOW())") or die(mysql_error());
     /*$sql = mysql_query("INSERT INTO prodotto (prod_code, prod_name, instock, price, category, brand, description, date_added) 
         VALUES('$product_code, $product_name',1,'$price',
             '$subcategory','$brand', '$description',now())") or die(mysql_error());*/
@@ -179,14 +179,37 @@ if ($productCount > 0) { //se trovo almeno un oggetto nell'inventario
                                 </label></td> -->                        </tr>
                         <tr>
                             <td align="right">Categoria</td>
-                            <td><select name="category" id="category">
-                                    <!-- se dovesse servire
-                                    <option value=""></option>
-                                    -->
-                                    <option value="11000000">Uomo</option>
-                                    <option value="12000000">Donna</option>
-                                    <option value="13000000">Unisex</option>
-                                </select></td>
+                            <td> <?php
+
+/* effettuo una query sulla tabella delle categorie
+ */
+$query = mysql_query("SELECT * FROM categoria") or die("Err:" . mysql_error());
+$categoryCount = mysql_num_rows($query); // conto il numero di oggetti trovati
+if ($categoryCount > 0) { //se trovo almeno una categoria
+    /*
+     * Costruisco la mia lista di prodotti (finchè ne trovo nell'inventario).
+     * Creo delle variabili che conterranno i dati dei prodotti che vado 
+     * leggendo nella lista, e le concateno nella variabile principale
+     */
+    echo "<select name="."category" ."id="."category".">";
+    while ($row = mysql_fetch_array($query)) {
+        $cat_code = $row["cat_code"];
+        $name = $row["name"];
+        $parent_code = $row["parent_code"];
+        echo "<option value=".$cat_code .">" .$name ."</option>";
+                                    
+            
+         
+        }
+        echo "</select>";
+    }
+ else {
+    echo "No category";
+}
+?>
+
+                                    
+                            </td>
                         </tr>
                         <tr>
                             <td align="right">Marca</td>

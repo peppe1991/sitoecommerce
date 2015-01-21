@@ -9,7 +9,7 @@ session_start(); /*
 $location_admin_login = "location: admin_login.php"; 
  /* * location della pagina di login
  */
-if (!isset($_SESSION["admin_name"]))
+if (!isset($_SESSION["id"]))
 {
 header($location_admin_login);
 exit();
