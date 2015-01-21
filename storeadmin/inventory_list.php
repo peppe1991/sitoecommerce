@@ -42,9 +42,10 @@ if (isset($_GET['yesdelete']))
 /* Ottengo i dati inseriti nel form e li traduco in una istruzione mysql per
  * inserire un nuovo oggetto nel database.
  */
-if (isset($_POST['product_name'])) /* se è stato cliccato il bottone per
+if (isset($_POST['product_name']) && isset($_POST['price']) && isset($_POST['sel_category']) && isset($_POST['brand'])) /* se è stato cliccato il bottone per
  * inserire un nuovo prodotto
  */ {
+    echo $_POST['sel_category'];
     /*
      * prendiamo i dati dalla variabile _POST prodotta dal form. la funzione 
      * mysql_real_escape_string filtra di volta in volta il dato che a noi interessa
@@ -54,7 +55,7 @@ if (isset($_POST['product_name'])) /* se è stato cliccato il bottone per
    // $product_code = mysql_real_escape_string($_POST['code']);
     $product_name = mysql_real_escape_string($_POST['product_name']);
     $price = mysql_real_escape_string($_POST['price']);
-    $subcategory = $_POST['sel_category'];
+    $category = $_POST['sel_category'];
     $brand = mysql_real_escape_string($_POST['brand']);
     $description = mysql_real_escape_string($_POST['description']);
     //Controlliamo se nel database esistano altri oggetti uguali
@@ -66,14 +67,18 @@ if (isset($_POST['product_name'])) /* se è stato cliccato il bottone per
     } */
     // Se non abbiamo trovato un oggetto uguale ne aggiungiamo uno nuovo al DB
     $sql = mysql_query("INSERT INTO prodotto ( prod_name, instock, price, cat_code, brand, description, date_added) 
-        VALUES ( '$product_name', '1', '$price', '$subcategory', '$brand', '$description', NOW())") or die(mysql_error());
+        VALUES ( '$product_name', '1', '$price', '$category', '$brand', '$description', NOW())") or die(mysql_error());
     /*$sql = mysql_query("INSERT INTO prodotto (prod_code, prod_name, instock, price, category, brand, description, date_added) 
         VALUES('$product_code, $product_name',1,'$price',
             '$subcategory','$brand', '$description',now())") or die(mysql_error());*/
     $pid = mysql_insert_id();
+   $query = mysql_query("SELECT id FROM prodotto WHERE prod_name =" .$product_name);
+   $row = mysql_fetch_array($query);
     //Aggiungi l'immagine all'archivio immagine con il nome adequato
-    $newname = "$product_code.jpg";
-    move_uploaded_file($_FILES['fileField']['tmp_name'], "../inventory_images/$newname");
+    $newname = $row["id"].".jpg";
+    echo $newname;
+    move_uploaded_file($_FILES['fileField']['tmp_name'], "../inventory_images/".$newname);
+    echo"ciao";
     /* Autorefresh per evitare che aggiornando la pagina dopo aver riempito il
      * form l'oggetto venga inserito due volte
      */
@@ -193,13 +198,13 @@ if ($categoryCount > 0) { //se trovo almeno una categoria
      * Creo delle variabili che conterranno i dati dei prodotti che vado 
      * leggendo nella lista, e le concateno nella variabile principale
      */
-    echo "<select name="."sel_category" ."id="."category".">";
+    echo '<select name="sel_category" id="category">';
     while ($row = mysql_fetch_array($query)) {
         $cat_code = $row["cat_code"];
         $name = $row["name"];
         $parent_code = $row["parent_code"];
-        echo "<option value=".$cat_code .">" .$name ."</option>";
-                                    
+        echo '<option value="'.$cat_code .'">' .$name .'</option>';
+                                   
             
          
         }

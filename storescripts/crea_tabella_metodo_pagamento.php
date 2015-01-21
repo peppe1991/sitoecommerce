@@ -9,7 +9,7 @@ $sqlCommand = "CREATE TABLE IF NOT EXISTS metodopag (
     PRIMARY KEY (met_code_pag),
     )";
 
-if (mysql_query($sqlCommand)) 
+if (mysql_query($sqlCommand)or die (mysql_error())) 
 {
     echo ("tabella METODOPAG creata correttamente"."<br>");
 }

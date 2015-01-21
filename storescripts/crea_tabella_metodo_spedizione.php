@@ -7,10 +7,9 @@ $sqlCommand = "CREATE TABLE IF NOT EXISTS metodospedizione (
     met_name varchar(20) NOT NULL,
     met_price int(3) NOT NULL,
     PRIMARY KEY (met_code_sped),
-    FOREIGN KEY(cat_code) REFERENCES categoria (cat_code)
     )";
 
-if (mysql_query($sqlCommand)) 
+if (mysql_query($sqlCommand) or die (mysql_error())) 
 {
     echo ("tabella METODOSPEDIZIONE creata correttamente"."<br>");
 }
