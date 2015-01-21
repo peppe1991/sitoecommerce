@@ -16,8 +16,8 @@ include "user_verify_script.php"
                 <p><h2>Benvenuto nel pannello di amministrazione dello store. </h2></p>
             <table id="menu" width="600px">
                 <tr>
-                    <td><b> <a href="inventory_list.php"> <img src="../style/elencoprodotti.jpg" height="100px"> <br> Aggiungi Prodotto </a>
-                </b></td> <td> Modifica Categorie </td> <td> Visualizza Lista Prodotti</td> <td>Fatture</td>
+                    <td><b> <a href="inventory_list.php"> <img src="../style/elencoprodotti.jpg" height="100px"> <br> Modifica Inventario </a>
+                        </b></td> <td> Modifica Categorie </td> <td> <a href="admin_edit.php">Modifica Amministratori</a></td> <td>Fatture</td>
                 </tr> 
                 </table></div>
             <!--metterci altra roba giusto per dargli un senso-->

@@ -18,8 +18,10 @@ else
 </head>
 <body>
     <div align="center" id="mainWrapper">
+    
         <?php include_once("./template_header.php"); ?>
         <div id="pageContent">
+            <table id="navigate_products">
             <?php
             while ($row = mysql_fetch_array($query)) {
                 ?> <a href="navigate_products.php?p=<?php echo $row["cat_code"]; ?>"> <?php echo $row["name"]; ?> </a> 
@@ -30,13 +32,13 @@ else
                 while ($row = mysql_fetch_array($query)) {
                     ?>
 
-                    <div><a href="display_product.php?p=<?php echo $row["prod_code"]; ?>"> <?php echo $row["prod_name"]; ?> </a></div>
-
+                <a href="display_product.php?p=<?php echo $row["prod_code"]; ?>"> <?php echo $row["prod_name"]; ?> </a>
+</tr>
                 <?php
                 }
             }
             ?>
-
+</table>
         </div>
         <?php include_once("template_footer.php"); ?>
     </div>

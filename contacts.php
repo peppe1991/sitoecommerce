@@ -1,5 +1,7 @@
 <?php session_start() ?>
-
+<?php
+$my_email = "giuseppe.palazzotto@gmail.com"; //email a cui spedire il modulo
+?>
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -15,6 +17,79 @@
                     <td valign="top">&nbsp;</td>
                     <td valign="top">
                         <p>
+                           <?php
+if (isset($_REQUEST['email'])) {
+	//send email
+	$email = $_REQUEST['email'] ;
+	$subject = $_REQUEST['subject'] ;
+	$message = $_REQUEST['message'] ;
+
+	echo "<table class='table' width='50%'>
+		<tr class='table_header'>
+			<td>Contact Form</td>
+		</tr>
+		<tr class='row1'>
+			<td>";
+				if ($email == "") {
+					echo "ERRORE: Devi inserire un indirizzo email<br>";
+					echo "<input type='button' value='Back' onclick='goBack()' />";
+					exit;
+				}
+				if ($subject == "") {
+					echo "ERRORE: Devi inserire un soggetto<br>";
+					echo "<input type='button' value='Back' onclick='goBack()' />";
+					exit;
+				}
+				if ($message == "") {
+					echo "ERRORE: Devi inserire un messaggio<br>";
+					echo "<input type='button' value='Back' onclick='goBack()' />";
+					exit;
+				}
+
+			mail($my_email, $subject,
+			$message, "From:" . $email);
+			echo "Grazie per averci contattato.<br>Il tuo messaggio è stato inviato.
+			</td>
+		</tr>
+	</table>";
+ 
+} else {
+
+	echo "<form method='post' action='contacts.php'>
+		<table class='table' width='40%'>
+			<tr class='table_header'>
+				<td colspan='2'>Contact Form</td>
+			</tr>
+			<tr class='row1'>
+				<td>Email:</td>
+				<td>
+					<input name='email' type='text' />
+				</td>
+			</tr>
+			<tr class='row1'>
+				<td>Soggetto:</td>
+				<td>
+					<input name='subject' type='text' />
+				</td>
+			</tr>
+			<tr class='row1'>
+				<td valign='top'>Messaggio:</td>
+				<td>
+					<textarea name='message' rows='8' cols='40'></textarea>
+				</td>
+			</tr>
+			<tr class='row1'>
+				<td>&nbsp;</td>
+				<td>
+					<input type='submit' value='Send Message' />
+				</td>
+			</tr>
+		</table>
+	</form>";
+}
+?>
+                            
+                            
                             Email: siacommerce@outlook.com
                         </p>
                         <p>
