@@ -24,7 +24,7 @@ else
             <table id="navigate_products">
             <?php
             while ($row = mysql_fetch_array($query)) {
-                ?> <a href="navigate_products.php?p=<?php echo $row["cat_code"]; ?>"> <?php echo $row["name"]; ?> </a> 
+                ?> <a href="navigate_products.php?p=<?php echo $row["cat_code"]; ?>"> <?php echo $row["name"]; ?><br> </a> 
                 <?php
             }
             if (isset($_GET["p"])) {

@@ -39,19 +39,10 @@ if ($productCount > 0) { //se trovo almeno un oggetto nell'inventario
     <div align="center" id="mainWrapper">
         <?php include_once("./template_header.php"); ?>
         <div id="pageContent">
-            <table width="100%" border="0 cellspacing="0" cellpadding="0">
-                <tr>
-                    <td valign="top">&nbsp;</td>
-                    <td valign="top">
-                        <p>Ultime novità</p>
-                        <p><?php
+            <div id="vetrina"><?php
                             echo $product_list;
-                            ?>
-                        </p>
-                    </td>
-                    <td valign="top"></td>
-                </tr>
-            </table>
+                            ?></div>
+            
 
         </div>
         <?php include_once("template_footer.php"); ?>

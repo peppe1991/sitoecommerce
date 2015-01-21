@@ -25,6 +25,23 @@ body {
     
  
 }
+
+#admin_menu {
+   
+    background-color: #FFF;
+  
+}
+#admin_td {
+    border: 1px solid;
+    text-align: center;
+    border-color: #4a5deb;    
+}
+#admin_td:hover {
+    border: 1px solid;
+    background-color: #cccccc;
+    border-color: #4a5deb;    
+}
+
 a {
 	font-size: 14px;
 	color: #03F;
@@ -59,6 +76,7 @@ a:active {
 	border-bottom:none;
 	background-color:#F4F4F4;
 	width:900px;
+        height: 500px;
 
 }
 #pageFooter {
@@ -79,40 +97,4 @@ a:active {
     
     
  
-}
-
-//css modulo email:
-table.table {
-        alignment-adjust: center;
-	border: 1px #006699 solid;
-	 /*width: 200;*/
-	border-collapse: collapse;
-}
-
-tr.table_header {
-	background-color: #FFF;
-	color: #FFFFFF;
-}
-td.table_header {
-	background-color: #006699;
-	color: #FFFFFF;
-}
-
-
-tr.row1 {
-	background-color: #FFD991;
-}
-
-tr.row2 {
-	background-color: #FFC991;
-}
-
-tr.row3 {
-	background-color: #FFB991;
-}
-
-
-td.cell_content {
-	background-color: #FFD991;
-	color: #000000;
 }

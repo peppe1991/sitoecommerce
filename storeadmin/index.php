@@ -14,10 +14,10 @@ include "user_verify_script.php"
             <?php include_once("template_header.php"); ?>
             <div id="pageContent">
                 <p><h2>Benvenuto nel pannello di amministrazione dello store. </h2></p>
-            <table id="menu" width="600px">
-                <tr>
-                    <td><b> <a href="inventory_list.php"> <img src="../style/elencoprodotti.jpg" height="100px"> <br> Modifica Inventario </a>
-                        </b></td> <td> Modifica Categorie </td> <td> <a href="admin_edit.php">Modifica Amministratori</a></td> <td>Fatture</td>
+            <table id="admin_menu" width="800px">
+                <tr id="admin_menu">
+                    <td id="admin_td"><b> <a href="inventory_list.php"> <img src="../style/elencoprodotti.png" height="100px"> <br> Modifica Inventario </a>
+                        </b></td> <td id="admin_td"><img src="../style/category.png" height="100px"> <br> Modifica Categorie </td> <td id="admin_td"> <a href="admin_edit.php"><img src="../style/admin.png" height="100px"> <br>Modifica Amministratori</a></td> <td id="admin_td"><img src="../style/fatture.png" height="100px"> <br>Fatture</td>
                 </tr> 
                 </table></div>
             <!--metterci altra roba giusto per dargli un senso-->

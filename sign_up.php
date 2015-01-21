@@ -62,7 +62,7 @@ if (isset($_POST["username"]) && isset($_POST["password"])
         $_SESSION["username"] = $username;
         $_SESSION["password"] = $password;
         
-        header("location: ./wellcome.php");
+        header("location: ./welcome.php");
     }
 }
 
