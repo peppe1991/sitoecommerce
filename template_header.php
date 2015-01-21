@@ -11,7 +11,7 @@
                 } else {
                     ?> <a href="login.php?c=1"> <?php }
                 ?>
-                      <img src="style/cart.png" alt="cart" width="50" height="50" border="0" />  Il tuo carrello</a>
+                        <img src="style/cart.png" alt="cart" width="50" height="50" border="0" /> <br> Il tuo carrello</a>
             </td>
 
         </tr>
