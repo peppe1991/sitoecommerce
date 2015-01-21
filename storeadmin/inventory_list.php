@@ -54,16 +54,16 @@ if (isset($_POST['product_name'])) /* se è stato cliccato il bottone per
    // $product_code = mysql_real_escape_string($_POST['code']);
     $product_name = mysql_real_escape_string($_POST['product_name']);
     $price = mysql_real_escape_string($_POST['price']);
-    $subcategory = mysql_real_escape_string($_POST['category']);
+    $subcategory = $_POST['sel_category'];
     $brand = mysql_real_escape_string($_POST['brand']);
     $description = mysql_real_escape_string($_POST['description']);
     //Controlliamo se nel database esistano altri oggetti uguali
-    $query = mysql_query("SELECT * FROM prodotto WHERE prod_code='$product_code' LIMIT 1");
+  /*  $query = mysql_query("SELECT * FROM prodotto WHERE prod_code='$product_code' LIMIT 1");
     $matching = mysql_num_rows($query); // numero righe corrispondenti
     if ($matching > 0) {
         echo 'ERRORE: si sta tentando di aggiungere un altro oggetto col codice "&product_code" nel sistema, <a href="inventory_list.php">clicca qui</a>';
         exit();
-    }
+    } */
     // Se non abbiamo trovato un oggetto uguale ne aggiungiamo uno nuovo al DB
     $sql = mysql_query("INSERT INTO prodotto ( prod_name, instock, price, cat_code, brand, description, date_added) 
         VALUES ( '$product_name', '1', '$price', '$subcategory', '$brand', '$description', NOW())") or die(mysql_error());
@@ -152,10 +152,12 @@ if ($productCount > 0) { //se trovo almeno un oggetto nell'inventario
                 <form action="inventory_list.php" enctype="multipart/form-data" name="myForm" id="myform" method="post">
                     <table width="90%" border="0" cellspacing="0" cellpadding="6">
                         <tr>
-                            <td width="20%" align="right">Codice</td>
-                            <td width="80%"><label>
-                                    <input name="code" type="text" id="code" size="8" />
-                                </label></td>
+                            <td width="20%" align="right">Codice Prodotto</td>
+                            <td width="50%"><label>
+                                    <b>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <?php 
+                                    $prod_cod=$productCount+1;
+                                    echo "$prod_cod"; ?>
+                                    </b></label></td>
                         </tr>
                         <tr>
                             <td width="20%" align="right">Nome prodotto</td>
@@ -191,7 +193,7 @@ if ($categoryCount > 0) { //se trovo almeno una categoria
      * Creo delle variabili che conterranno i dati dei prodotti che vado 
      * leggendo nella lista, e le concateno nella variabile principale
      */
-    echo "<select name="."category" ."id="."category".">";
+    echo "<select name="."sel_category" ."id="."category".">";
     while ($row = mysql_fetch_array($query)) {
         $cat_code = $row["cat_code"];
         $name = $row["name"];

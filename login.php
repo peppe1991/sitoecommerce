@@ -34,9 +34,9 @@ if (isset($_POST["username"]) && isset($_POST["password"])) {
         /* 
          */
         while ($row = mysql_fetch_array($query)) {
-            $id = $row["id"];
+            $user_id = $row["id"];
         }
-        $_SESSION["userid"] = $id;
+        $_SESSION["userid"] = $user_id;
         $_SESSION["username"] = $username;
         $_SESSION["password"] = $password;
         if ($_GET["c"] = 1)

@@ -4,15 +4,19 @@
     <title>Il tuo carrello</title>
     <link rel="stylesheet" href="style/style.css" type="text/css" media="screen" />
 </head>
- 
+ <?php require './storescripts/connect_to_mysql.php';
+         session_start();
+
+?>
 <body>
     <div align="center" id="mainWrapper">
         <?php include_once("./template_header.php"); ?>
         <div id="pageContent"><?php
-            session_start();
-            require './storescripts/connect_to_mysql.php';
+        
             $query = mysql_query("SELECT * FROM carrello WHERE user_id = " . $_SESSION["userid"]);
-            ?>
+        
+      
+        ?>
             <table id="carello" width="600px">
                 <tr>
                     <td><b> Nome Prodotto</b></td> <td> Prezzo Prodotto </td> <td> Quantita'</td> <td>€</td>

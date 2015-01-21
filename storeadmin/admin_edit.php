@@ -7,7 +7,7 @@ include "user_verify_script.php"
  * i campi.
  */
 
-if (isset($_POST["username"]) && isset($_POST["password"])) {
+if (isset($_POST["username"]) & isset($_POST["password"])) {
     /*ai dati inseriti applichiamo lo stesso tipo di "filtraggio" che abbiamo
      * applicato nella pagina di amministrazione
      */
@@ -19,7 +19,7 @@ if (isset($_POST["username"]) && isset($_POST["password"])) {
      * ed effettuiamo la query "di controllo"
      */
     include "../storescripts/connect_to_mysql.php";
-    $query = mysql_query("SELECT id FROM utente WHERE username='$username' LIMIT 1") or die(mysql_error());
+    $query = mysql_query("SELECT id FROM amministratore WHERE username='$username' LIMIT 1") or die(mysql_error());
     $found = mysql_num_rows($query);
     if ($found == 1) 
         { 
@@ -29,7 +29,7 @@ if (isset($_POST["username"]) && isset($_POST["password"])) {
          */
         echo'ERRORE: esiste già un utente registrato con questo username, si'
         . 'prega di sceglierne un altro';
-        header("location: ./admin_edit.php");
+       // header("location: ./admin_edit.php");
         exit();
     } else {
         /*Aggiungiamo al database un nuovo utente con i dati appena inseriti
@@ -38,7 +38,7 @@ if (isset($_POST["username"]) && isset($_POST["password"])) {
         
         $sqlCommand = mysql_query("INSERT INTO amministratore ( username, password, email, last_log_date)
             VALUES ('$username', '$password', '$email', NOW()) ") or die(mysql_error());
-                header("location: ./admin_edit.php");
+                // header("location: ./admin_edit.php");
      
     }
 }
@@ -73,7 +73,7 @@ $sql = mysql_query("SELECT * FROM amministratore");
     }}
 ?> </table>
                 <div align="left" style="margin-left:24px;">
-                    <h2>Prego, inserire i dati del nuovo utente</h2>
+                    <h3>Inserire dati nuovo amministratore</h3>
                     <form id="form1" name="form1" method="post" action="admin_edit.php">
                         Username:<br />
                         <input name="name" type="text" id="username" size="40"  />

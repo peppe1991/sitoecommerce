@@ -16,7 +16,7 @@
 
         </tr>
         <tr>
-            <td colspan="2"><a href="../index.php">Home</a> &nbsp; &middot; &nbsp; <a href="../navigate_products.php">Naviga prodotti</a> &nbsp; &middot; &nbsp; <a href="../help.php">Help</a> &nbsp; &middot; &nbsp; <a href="../contacts.php">Contattaci</a></td>
+            <td colspan="2"><a href="../index.php" target="_blank">Visualizza sito</a> &nbsp; &middot; &nbsp; <a href="index.php">Pannello di Amministrazione</a> &nbsp; &middot; &nbsp; </td>
         </tr>
     </table>
 </div>

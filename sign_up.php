@@ -28,7 +28,7 @@ if (isset($_POST["username"]) && isset($_POST["password"])
      * ed effettuiamo la query "di controllo"
      */
     include "./storescripts/connect_to_mysql.php";
-    $query = mysql_query("SELECT id FROM amministratore WHERE username='$username' LIMIT 1") or die(mysql_error());
+    $query = mysql_query("SELECT id FROM utente WHERE username='$username' LIMIT 1") or die(mysql_error());
     $found = mysql_num_rows($query);
     if ($found == 1) 
         { 
@@ -38,7 +38,6 @@ if (isset($_POST["username"]) && isset($_POST["password"])
          */
         echo'ERRORE: esiste già un utente registrato con questo username, si'
         . 'prega di sceglierne un altro';
-        header("location: ./sign_up.php");
         exit();
     } else {
         /*Aggiungiamo al database un nuovo utente con i dati appena inseriti
@@ -57,9 +56,9 @@ if (isset($_POST["username"]) && isset($_POST["password"])
         session_start();
         $query = mysql_query("SELECT id FROM utente WHERE username='$username' AND password='$password' LIMIT 1");
         while ($row = mysql_fetch_array($query)) {
-            $id = $row["id"];
+            $user_id = $row["id"];
         }
-        $_SESSION["userid"] = $id;
+        $_SESSION["userid"] = $user_id;
         $_SESSION["username"] = $username;
         $_SESSION["password"] = $password;
         

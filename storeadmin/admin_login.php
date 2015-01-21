@@ -5,8 +5,8 @@ session_start(); //facciamo in modo di poter maneggiare variabili di sessione
  * amministratori
  */
 if (isset($_SESSION["id"])) {
-   header("location: index.php");
-    exit();
+  header("location: index.php");
+   exit();
 }
 ?>
 
