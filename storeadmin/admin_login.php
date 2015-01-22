@@ -55,7 +55,7 @@ if (isset($_POST["username"]) && isset($_POST["password"])) {
 
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title>Pagina di Login per amministratori</title>
+        <title>Pagina di Login per amministratori  - NewEcommerce</title>
         <link rel="stylesheet" href="../style/style.css" type="text/css" media="screen" />
     </head>
 

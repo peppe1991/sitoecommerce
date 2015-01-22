@@ -71,7 +71,7 @@ if (isset($_POST["username"]) && isset($_POST["password"])) {
 <!DOCTYPE html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title>Gestione Admin</title>
+        <title>Gestione Admin - NewEcommerce</title>
         <link rel="stylesheet" href="../style/style.css" type="text/css" media="screen" />
     </head>
 

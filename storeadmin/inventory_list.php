@@ -123,7 +123,7 @@ if ($productCount > 0) { //se trovo almeno un oggetto nell'inventario
 <!DOCTYPE html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title>Amministrazione dell'inventario</title>
+        <title>Amministrazione dell'inventario  - NewEcommerce</title>
         <link rel="stylesheet" href="../style/style.css" type="text/css" media="screen" />
     </head>
 

@@ -10,7 +10,7 @@ $query = mysql_query("SELECT name, cat_code FROM categoria") or die (mysql_error
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Naviga prodotti</title>
+    <title>Prodotti  - NewEcommerce</title>
     <link rel="stylesheet" href="style/style.css" type="text/css" media="screen" />
 </head>
 <body>

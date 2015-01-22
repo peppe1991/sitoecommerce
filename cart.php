@@ -1,7 +1,7 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Il tuo carrello</title>
+    <title>Il tuo carrello - NewEcommerce</title>
     <link rel="stylesheet" href="style/style.css" type="text/css" media="screen" />
 </head>
  <?php require './storescripts/connect_to_mysql.php';
