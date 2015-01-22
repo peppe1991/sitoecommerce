@@ -5,7 +5,7 @@ $my_email = "giuseppe.palazzotto@gmail.com"; //email a cui spedire il modulo
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Contatti</title>
+    <title>Contatti - NewEcommerce</title>
     <link rel="stylesheet" href="style/style.css" type="text/css" media="screen" />
 </head>
 <body>
