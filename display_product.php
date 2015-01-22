@@ -22,7 +22,7 @@ else
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title><?php echo $row ?>["prod_name"] </title>
+    <title><?php echo $row["prod_name"]  ?></title>
     <link rel="stylesheet" href="style/style.css" type="text/css" media="screen" />
 </head>
 <body>
