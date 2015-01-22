@@ -21,8 +21,10 @@ include "user_verify_script.php"
                     <td id="admin_td"> <a href="admin_list.php"><img src="../style/admin.png" height="100px"> <br>Modifica Amministratori</a></td> 
                     <td id="admin_td"><img src="../style/fatture.png" height="100px"> <br>Fatture</td>
                 </tr> 
-            </table></div>
-        <?php include_once("template_footer.php"); ?>
-    </div>
-</body>
+                </table></div>
+         <?php include_once("template_footer.php"); ?>
+
+        </div>
+        
+    </body>
 </html>

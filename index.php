@@ -51,7 +51,7 @@ if ($productCount > 0) { //se trovo almeno un oggetto nell'inventario
             
 
         </table>
-        <?php include_once("template_footer.php"); ?>
-    </div>
+        
+    </div><?php include_once("template_footer.php"); ?>
 </body>
 </html>

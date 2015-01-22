@@ -104,7 +104,9 @@ $sql = mysql_query("SELECT * FROM amministratore");
     }
 ?> </table>
                 <div align="left" style="margin-left:24px;">
-                    <h3>Inserire dati nuovo amministratore</h3>
+                    <tr style="text-align: center;"> <h3>
+                    &darr; Inserire i dati del nuovo amministratore &darr;
+                    </h3></tr>
                     <form id="form1" name="form1" method="post" action="admin_edit.php">
                         Username:<br />
                         <input name="username" type="text" id="username" size="40"  />
