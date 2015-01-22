@@ -4,10 +4,10 @@ session_start(); //facciamo in modo di poter maneggiare variabili di sessione
  * il processo di login. Lo spediamo direttamente alla pagina index per gli 
  * amministratori
  */
- if (isset($_SESSION["id"])) {
+/* if (isset($_SESSION["id"])) {
   header("location: index.php");
    exit();
-}
+}*/
 ?>
 
 

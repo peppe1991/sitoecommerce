@@ -20,8 +20,9 @@ include "user_verify_script.php"
                     </td> <td id="admin_td"><a href="category_list.php"><img src="../style/category.png" height="100px"> <br> Modifica Categorie</a> </td> <td id="admin_td"> <a href="admin_list.php"><img src="../style/admin.png" height="100px"> <br>Modifica Amministratori</a></td> <td id="admin_td"><img src="../style/fatture.png" height="100px"> <br>Fatture</td>
                 </tr> 
                 </table></div>
-            <!--metterci altra roba giusto per dargli un senso-->
-            <?php include_once("template_footer.php"); ?>
+         <?php include_once("template_footer.php"); ?>
+
         </div>
+        
     </body>
 </html>
