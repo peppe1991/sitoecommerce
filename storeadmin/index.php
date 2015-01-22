@@ -17,7 +17,7 @@ include "user_verify_script.php"
             <table id="admin_menu" width="800px">
                 <tr id="admin_menu">
                     <td id="admin_td"> <a href="inventory_list.php"> <img src="../style/elencoprodotti.png" height="100px"> <br> Modifica Inventario </a>
-                        </td> <td id="admin_td"><img src="../style/category.png" height="100px"> <br> Modifica Categorie </td> <td id="admin_td"> <a href="admin_list.php"><img src="../style/admin.png" height="100px"> <br>Modifica Amministratori</a></td> <td id="admin_td"><img src="../style/fatture.png" height="100px"> <br>Fatture</td>
+                    </td> <td id="admin_td"><a href="category_list.php"><img src="../style/category.png" height="100px"> <br> Modifica Categorie</a> </td> <td id="admin_td"> <a href="admin_list.php"><img src="../style/admin.png" height="100px"> <br>Modifica Amministratori</a></td> <td id="admin_td"><img src="../style/fatture.png" height="100px"> <br>Fatture</td>
                 </tr> 
                 </table></div>
             <!--metterci altra roba giusto per dargli un senso-->
