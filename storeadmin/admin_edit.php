@@ -20,9 +20,8 @@ if (isset($_POST["username"]) && isset($_POST["password"])) {
      * ed effettuiamo la query "di controllo"
      */
     include "../storescripts/connect_to_mysql.php";
-    $query = mysql_query("UPDATE amministratore SET username='$username', password='$password', email='$email', WHERE id='$pid'") or die("Err:" . mysql_error());
-        echo $sql;
-
+    $query = mysql_query("UPDATE amministratore SET username='$username', password='$password', email='$email' WHERE id='$pid'") or die("Err:" . mysql_error());
+    header("location: admin_list.php");
 }
 
 
