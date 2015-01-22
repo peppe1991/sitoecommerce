@@ -4,10 +4,10 @@ session_start(); //facciamo in modo di poter maneggiare variabili di sessione
  * il processo di login. Lo spediamo direttamente alla pagina index per gli 
  * amministratori
  */
-/* if (isset($_SESSION["id"])) {
+if (isset($_SESSION["admin_id"])) {
   header("location: index.php");
    exit();
-}*/
+}
 ?>
 
 
@@ -37,9 +37,9 @@ if (isset($_POST["username"]) && isset($_POST["password"])) {
          * correttamente settata.
          */
         while ($row = mysql_fetch_array($query)) {
-            $id = $row["id"];
+            $admin_id = $row["id"];
         }
-        $_SESSION["id"] = $id;
+        $_SESSION["id"] = $admin_id;
         $_SESSION["admin_name"] = $manager;
         $_SESSION["password"] = $password;
         $query= mysql_query("UPDATE amministratore SET last_log_date = NOW() WHERE id='$id' LIMIT 1");
