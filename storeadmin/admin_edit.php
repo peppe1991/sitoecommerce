@@ -1,30 +1,7 @@
 <?php
 include "user_verify_script.php"
 ?>
-<?php
-// Chiedo comferma per iniziare la procedura di eliminazione del prodotto
-if (isset($_GET['deleteid'])) {
-    echo 'Vuoi veramente eliminare questo amministratore (CODICE ' . $_GET['deleteid'] . ')? '
-            . '<a href="admin_edit.php?yesdelete=' . $_GET['deleteid'] . '">Yes</a> | '
-            . '<a href="admin_edit.php">No</a>';
-    exit();
-}
 
-if (isset($_GET['yesdelete'])) 
-    { //se la risposta è affermativa procedo con l'eliminazione
-    // remove item from system and delete its picture
-    // delete from database
-    $id_to_delete = $_GET['yesdelete'];
-    $sql = mysql_query("DELETE FROM amministratore WHERE id='$id_to_delete' LIMIT 1") or die(mysql_error());
-    
-    
-    /*ricarico la pagina attuale, sia che l'admin abbia deciso la cancellazione
-     * dell'oggetto sia nel caso contrario.
-     */
-    header("location: admin_edit.php");
-    exit();
-}
-?>
 <?php
 /* Cominciamo ad elaborare i dati del form solo se l'utente ha riempito entrambi
  * i campi.
@@ -34,6 +11,7 @@ if (isset($_POST["username"]) && isset($_POST["password"])) {
     /*ai dati inseriti applichiamo lo stesso tipo di "filtraggio" che abbiamo
      * applicato nella pagina di amministrazione
      */
+    $pid = mysql_real_escape_string($_POST['thisID']);
     $username = preg_replace('#[^A-Za-z0-9]#i', '', $_POST["username"]); 
     $password = md5(preg_replace('#[^A-Za-z0-9]#i', '', $_POST["password"]));
     $email =  $_POST["email"];
@@ -42,31 +20,45 @@ if (isset($_POST["username"]) && isset($_POST["password"])) {
      * ed effettuiamo la query "di controllo"
      */
     include "../storescripts/connect_to_mysql.php";
-    $query = mysql_query("SELECT id FROM amministratore WHERE username='$username' LIMIT 1") or die(mysql_error());
-    $found = mysql_num_rows($query);
-    if ($found == 1) 
-        { 
-        /* Se troviamo un utente già registrato nel nostro database con lo 
-         * stesso username mandiamo un messaggio di errore e impediamo la 
-         * registrazione
-         */
-        echo'ERRORE: esiste già un utente registrato con questo username, si'
-        . 'prega di sceglierne un altro';
-       // header("location: ./admin_edit.php");
-        exit();
-    } else {
-        /*Aggiungiamo al database un nuovo utente con i dati appena inseriti
-         * 
-         */
-        
-        $sqlCommand = mysql_query("INSERT INTO amministratore ( username, password, email, last_log_date)
-            VALUES ('$username', '$password', '$email', NOW()) ") or die(mysql_error());
-                // header("location: ./admin_edit.php");
-     
-    }
+    $query = mysql_query("UPDATE amministratore SET username='$username', password='$password', email='$email', WHERE id='$pid'") or die("Err:" . mysql_error());
+        echo $sql;
+
 }
 
 
+?>
+<?php
+/* prelevo le informazioni riguardanti l'oggetto selezionato e le inserisco
+ * automaticamente in un form dove l'admin potrà vederle e decidere quali
+ * modificare
+ */
+if (isset($_GET['pid'])) /* se è settata la variabile che passiamo dall'altra
+ * pagina (il codice del prodotto)
+ * (si potrebbe filtrare un'altra volta ma è ridondante) 
+ */ {
+    $targetID = $_GET['pid']; //salvo il codice su una nuova variabile
+    /* query sul database per richiamare informazioni sul prodotto
+     * 
+     */
+    $sql = mysql_query("SELECT * FROM amministratore WHERE id='$targetID' LIMIT 1");
+        $adminCount = mysql_num_rows($sql);
+
+    if ($adminCount > 0) {
+        while ($row = mysql_fetch_array($sql)) {
+
+            $username = $row["username"];
+            $password = $row["password"];
+            $email = $row["email"];
+           
+        }
+    } else {
+        /* non dovrebbe mai accadere visto che il codice lo passiamo in 
+         * automatico dall'altra pagina
+         */
+        echo "ERRORE: id amministratore inesistente nel database.";
+        exit();
+    }
+}
 ?>
 <!DOCTYPE html>
     <head>
@@ -78,51 +70,37 @@ if (isset($_POST["username"]) && isset($_POST["password"])) {
     <body>
         <div align="center" id="mainWrapper">
             <?php include_once("template_header.php"); ?>
-            <div id="pageContent"><br />
-                <table id="lista admin" width="600px"><tr><td> Id </td><td>Username</td><td>email</td><td>Ultimo accesso</td> </tr> <?php
-$sql = mysql_query("SELECT * FROM amministratore");
-    $adminCount = mysql_num_rows($sql);
-    if ($adminCount > 0) {
-        echo "<h3>Lista Amministratori:</h3>";
-        while ($row = mysql_fetch_array($sql)) {
-         echo "<tr><td>";
-            $id = $row["id"];
-    echo "$id"."</td><td>";
-    $admin_name = $row["username"];
-    echo "$admin_name"."</td><td>";
-    $email = $row["email"];            
-    echo "$email"."</td><td>";
-    $date = $row["last_log_date"];
-        echo "$date"."&nbsp; &nbsp; &nbsp; <a href='admin_edit.php?pid=$id'>edit</a> &bull; "
-                . "<a href='admin_edit.php?deleteid=$id'>delete</a></td></tr>";
-       
-    }
-    
-        }
-        else {
-        echo"<h3>Non vi sono attualmente amministratori. Registrane uno!</h3>";
-    }
-?> </table>
-                <div align="left" style="margin-left:24px;">
-                    <h3>Inserire dati nuovo amministratore</h3>
-                    <form id="form1" name="form1" method="post" action="admin_edit.php">
-                        Username:<br />
-                        <input name="username" type="text" id="username" size="40"  />
-                        <br /><br />
-                        Password:<br />
-                        <input name="password" type="password" id="password" size="40"  />
-                        <br /><br />
-                        Email:<br />
-                        <input name="email" type="text" id="email" size="40"  />
-                        <br /><br />
-                      
-                        <br />
-
-                        <input type="submit" name="button" id="button" value="Conferma dati" />
-
-                    </form>
-                    <p>&nbsp; </p>
-                </div>
+            <div id="pageContent">                    <h3>Modificare i dati dell'amministratore selezionato</h3>
+<br />
+                <form action="admin_edit.php?pid=<?php echo $targetID; ?>" enctype="multipart/form-data" name="myForm" id="myform" method="post">
+                    <table width="90%" border="0" cellspacing="0" cellpadding="6">
+                        <tr>
+                            <td width="20%" align="right">Username</td>
+                            <td width="80%"><label>
+                                    <input name="username" type="text" id="username" size="64" value="<?php echo $username; ?>" />
+                                </label></td>
+                        </tr>
+                        <tr>
+                            <td align="right">Password</td>
+                            <td><label>
+                                    <input name="password" type="password" id="password" size="12" value="<?php echo $password; ?>" />
+                                </label></td>
+                        </tr>
+                        <tr>
+                            <td align="right">Email</td>
+                            <td><label>
+                 
+                                    <input name="email" type="text" id="email" size="12" value="<?php echo $email; ?>" />
+                                </label></td>
+                        </tr>
+                        
+                            <td><label>
+                                    <input name="thisID" type="hidden" value="<?php echo $targetID; ?>" />
+                                    <input type="submit" name="button" id="button" value="Conferma Modifiche" />
+                                </label></td>
+                        </tr>
+                    </table>
+                </form>
                 <br />
                 <br />
                 <br />

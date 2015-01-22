@@ -55,6 +55,7 @@ if (isset($_POST['product_name']) && isset($_POST['price']) && isset($_POST['sel
    // $product_code = mysql_real_escape_string($_POST['code']);
     $product_name = mysql_real_escape_string($_POST['product_name']);
     $price = mysql_real_escape_string($_POST['price']);
+    $inStock = mysql_real_escape_string($_POST['instock']);
     $category = $_POST['sel_category'];
     $brand = mysql_real_escape_string($_POST['brand']);
     $description = mysql_real_escape_string($_POST['description']);
@@ -67,7 +68,7 @@ if (isset($_POST['product_name']) && isset($_POST['price']) && isset($_POST['sel
     } */
     // Se non abbiamo trovato un oggetto uguale ne aggiungiamo uno nuovo al DB
     $sql = mysql_query("INSERT INTO prodotto ( prod_name, instock, price, cat_code, brand, description, date_added) 
-        VALUES ( '$product_name', '1', '$price', '$category', '$brand', '$description', NOW())") or die(mysql_error());
+        VALUES ( '$product_name', '$inStock', '$price', '$category', '$brand', '$description', NOW())") or die(mysql_error());
     /*$sql = mysql_query("INSERT INTO prodotto (prod_code, prod_name, instock, price, category, brand, description, date_added) 
         VALUES('$product_code, $product_name',1,'$price',
             '$subcategory','$brand', '$description',now())") or die(mysql_error());*/
@@ -109,8 +110,9 @@ if ($productCount > 0) { //se trovo almeno un oggetto nell'inventario
         $id = $row["prod_code"];
         $product_name = $row["prod_name"];
         $price = $row["price"];
+        $instock2 = $row["instock"];
         $date_added = strftime("%b %d, %Y", strtotime($row["date_added"]));
-        $product_list .= "Product ID: $id - <strong>$product_name</strong> - $$price - <em>aggiunto il $date_added</em> "
+        $product_list .= "Product ID: $id - <strong>$product_name</strong> - $$price - Quantità disponibile: $instock2 -- <em>aggiunto il $date_added</em> "
                 . "&nbsp; &nbsp; &nbsp; <a href='inventory_edit.php?pid=$id'>edit</a> &bull; "
                 . "<a href='inventory_list.php?deleteid=$id'>delete</a><br />";
     }
@@ -217,6 +219,12 @@ if ($categoryCount > 0) { //se trovo almeno una categoria
 
                                     
                             </td>
+                        </tr>
+                        <tr>
+                            <td align="right">Quantità disponibile</td>
+                            <td><label>
+                                    <input name="instock" type="text" id="instock" size="12" />
+                                </label></td>
                         </tr>
                         <tr>
                             <td align="right">Marca</td>
