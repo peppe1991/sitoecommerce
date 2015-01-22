@@ -23,7 +23,7 @@ if ($productCount > 0) { //se trovo almeno un oggetto nell'inventario
         $id = $row["prod_code"];
         $product_name = $row["prod_name"];
         $price = $row["price"];
-        $product_list .= "<a href='product.php?showid=$id'> <strong>$product_name</strong> </a> - $$price </br></br>";
+        $product_list .= "<a href='product.php?p=$id'> <strong>$product_name</strong> </a> - $$price </br></br>";
     }
 } else {
     $product_list = "Nessun prodotto nel nostro store per il momento";
