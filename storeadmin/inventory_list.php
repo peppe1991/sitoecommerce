@@ -73,10 +73,10 @@ if (isset($_POST['product_name']) && isset($_POST['price']) && isset($_POST['sel
         VALUES('$product_code, $product_name',1,'$price',
             '$subcategory','$brand', '$description',now())") or die(mysql_error());*/
     $pid = mysql_insert_id();
-   $query = mysql_query("SELECT id FROM prodotto WHERE prod_name =" .$product_name);
-   $row = mysql_fetch_array($query);
     //Aggiungi l'immagine all'archivio immagine con il nome adequato
-    $newname = $row["id"].".jpg";
+    echo 'asñdasfcnlsnvhklhasfsfasfasfasdfsadfasdfl';
+    echo $pid;
+    $newname = $pid.'.jpg';
     echo $newname;
     move_uploaded_file($_FILES['fileField']['tmp_name'], "../inventory_images/".$newname);
     echo"ciao";

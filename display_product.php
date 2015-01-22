@@ -9,10 +9,18 @@ session_start();
 <?php
 if (isset($_POST["amount"]))
 {
+    if (isset($_SESSION["id"]))
+    {
     $quantity = $_POST["amount"];
     $userid = $_SESSION["userid"];
     $query = mysql_query("INSERT INTO carrello (prod_code, user_id, quantity)
         VALUES ('$targetID','$userid','$quantity' )") or die (mysql_error());
+    }
+    else
+    {
+        echo'ciao';
+        header ("./login.php?c=2");
+    }
 }
 else
 {
