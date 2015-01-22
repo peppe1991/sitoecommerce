@@ -7,7 +7,7 @@ include "user_verify_script.php"
  * i campi.
  */
 
-if (isset($_POST["username"]) & isset($_POST["password"])) {
+if (isset($_POST["username"]) && isset($_POST["password"])) {
     /*ai dati inseriti applichiamo lo stesso tipo di "filtraggio" che abbiamo
      * applicato nella pagina di amministrazione
      */
@@ -76,10 +76,10 @@ $sql = mysql_query("SELECT * FROM amministratore");
                     <h3>Inserire dati nuovo amministratore</h3>
                     <form id="form1" name="form1" method="post" action="admin_edit.php">
                         Username:<br />
-                        <input name="name" type="text" id="username" size="40"  />
+                        <input name="username" type="text" id="username" size="40"  />
                         <br /><br />
                         Password:<br />
-                        <input name="surname" type="password" id="password" size="40"  />
+                        <input name="password" type="password" id="password" size="40"  />
                         <br /><br />
                         Email:<br />
                         <input name="email" type="text" id="email" size="40"  />
