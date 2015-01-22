@@ -39,6 +39,7 @@ if (isset($_POST["username"]) && isset($_POST["password"])) {
         $_SESSION["userid"] = $user_id;
         $_SESSION["username"] = $username;
         $_SESSION["password"] = $password;
+        $query = mysql_query ("UPDATE utente SET last_log_date = NOW() WHERE id='$user_id' LIMIT 1");
         if ($_GET["c"] = 1)
         {
             header("location: cart.php");

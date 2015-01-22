@@ -19,7 +19,7 @@ session_start();
 Grazie per esserti registrato!                        </p>
                         Benvenuto in NewEcommerce
                         <p>
-                            <a href="category.php">Naviga tra i nostri prodotti</a>
+                            <a href="navigate_products.php">Naviga tra i nostri prodotti</a>
                         </p>
                     </td>
                     <td valign="top"></td>

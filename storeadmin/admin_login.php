@@ -42,6 +42,7 @@ if (isset($_POST["username"]) && isset($_POST["password"])) {
         $_SESSION["id"] = $id;
         $_SESSION["admin_name"] = $manager;
         $_SESSION["password"] = $password;
+        $query= mysql_query("UPDATE amministratore SET last_log_date = NOW() WHERE id='$id' LIMIT 1");
         header("location: index.php");
         exit();
     } else {
