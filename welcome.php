@@ -4,7 +4,7 @@ session_start();
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>wellcome in NewEcommerce</title>
+    <title>Welcome in NewEcommerce</title>
     <link rel="stylesheet" href="style/style.css" type="text/css" media="screen" />
 </head>
 <body>
@@ -16,7 +16,8 @@ session_start();
                     <td valign="top">&nbsp;</td>
                     <td valign="top">
                         <p>
-Grazie per esserti registrato!                        </p>
+                            Grazie per esserti registrato!                        
+                        </p>
                         Benvenuto in NewEcommerce
                         <p>
                             <a href="navigate_products.php">Naviga tra i nostri prodotti</a>
