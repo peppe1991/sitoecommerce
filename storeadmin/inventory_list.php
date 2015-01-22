@@ -74,12 +74,13 @@ if (isset($_POST['product_name']) && isset($_POST['price']) && isset($_POST['sel
             '$subcategory','$brand', '$description',now())") or die(mysql_error());*/
     $pid = mysql_insert_id();
     //Aggiungi l'immagine all'archivio immagine con il nome adequato
-    echo 'asñdasfcnlsnvhklhasfsfasfasfasdfsadfasdfl';
-    echo $pid;
+    
     $newname = $pid.'.jpg';
-    echo $newname;
-    move_uploaded_file($_FILES['fileField']['tmp_name'], "../inventory_images/".$newname);
-    echo"ciao";
+    $uploaded = move_uploaded_file($_FILES['fileField']['tmp_name'], "../inventory_images/".$newname);  
+    if (!$uploaded)
+    {
+        echo "ERRORE: non è riuscita la creazione dell'immagine";
+    }
     /* Autorefresh per evitare che aggiornando la pagina dopo aver riempito il
      * form l'oggetto venga inserito due volte
      */
