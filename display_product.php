@@ -7,12 +7,12 @@ session_start();
 ?>
 
 <?php
-if (isset($_POST["amount"]) && isset($_POST["ship_method"]) )
+if (isset($_POST["amount"]))
 {
     $quantity = $_POST["amount"];
     $userid = $_SESSION["userid"];
     $query = mysql_query("INSERT INTO carrello (prod_code, user_id, quantity)
-        VALUES ('$targetID','$userid','$quantity' )");
+        VALUES ('$targetID','$userid','$quantity' )") or die (mysql_error());
 }
 else
 {
@@ -42,7 +42,7 @@ else
            
             ?>
                     </td>
-            <form action="inventory_edit.php?pid=<?php echo $targetID; ?>" enctype="multipart/form-data" name="myForm" id="myform" method="post">
+            <form action="display_product.php?p=<?php echo $targetID; ?>" enctype="multipart/form-data" name="myForm" id="myform" method="post">
                         <tr>
                             <td width="20%" align="right">Quantità da acquistare</td>
                             <td width="80%"><label>

@@ -4,7 +4,7 @@ session_start();
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>welcome in NewEcommerce</title>
+    <title>Welcome to our site!</title>
     <link rel="stylesheet" href="style/style.css" type="text/css" media="screen" />
 </head>
 <body>
