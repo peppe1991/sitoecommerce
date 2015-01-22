@@ -3,11 +3,12 @@
 require_once 'connect_to_mysql.php';
 
 $sqlCommand = "CREATE TABLE IF NOT EXISTS carrello (
+    cart_element int(4) NOT NULL auto_increment,
     prod_code int(4) NOT NULL,
     user_id int(32) NOT NULL,
     quantity int (16) NOT NULL,
     last_mod_date date NOT NULL,
-    PRIMARY KEY (prod_code, user_id),
+    PRIMARY KEY (cart_element, user_id),
     FOREIGN KEY (prod_code) REFERENCES prodotto(prod_code),
     FOREIGN KEY(user_id) REFERENCES utente(id)
     )";
