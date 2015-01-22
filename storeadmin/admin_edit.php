@@ -1,7 +1,30 @@
 <?php
 include "user_verify_script.php"
 ?>
+<?php
+// Chiedo comferma per iniziare la procedura di eliminazione del prodotto
+if (isset($_GET['deleteid'])) {
+    echo 'Vuoi veramente eliminare questo amministratore (CODICE ' . $_GET['deleteid'] . ')? '
+            . '<a href="admin_edit.php?yesdelete=' . $_GET['deleteid'] . '">Yes</a> | '
+            . '<a href="admin_edit.php">No</a>';
+    exit();
+}
 
+if (isset($_GET['yesdelete'])) 
+    { //se la risposta è affermativa procedo con l'eliminazione
+    // remove item from system and delete its picture
+    // delete from database
+    $id_to_delete = $_GET['yesdelete'];
+    $sql = mysql_query("DELETE FROM amministratore WHERE id='$id_to_delete' LIMIT 1") or die(mysql_error());
+    
+    
+    /*ricarico la pagina attuale, sia che l'admin abbia deciso la cancellazione
+     * dell'oggetto sia nel caso contrario.
+     */
+    header("location: admin_edit.php");
+    exit();
+}
+?>
 <?php
 /* Cominciamo ad elaborare i dati del form solo se l'utente ha riempito entrambi
  * i campi.
@@ -60,6 +83,7 @@ if (isset($_POST["username"]) && isset($_POST["password"])) {
 $sql = mysql_query("SELECT * FROM amministratore");
     $adminCount = mysql_num_rows($sql);
     if ($adminCount > 0) {
+        echo "<h3>Lista Amministratori:</h3>";
         while ($row = mysql_fetch_array($sql)) {
          echo "<tr><td>";
             $id = $row["id"];
@@ -69,8 +93,15 @@ $sql = mysql_query("SELECT * FROM amministratore");
     $email = $row["email"];            
     echo "$email"."</td><td>";
     $date = $row["last_log_date"];
-           echo "$date"."</td></tr>";
-    }}
+        echo "$date"."&nbsp; &nbsp; &nbsp; <a href='admin_edit.php?pid=$id'>edit</a> &bull; "
+                . "<a href='admin_edit.php?deleteid=$id'>delete</a></td></tr>";
+       
+    }
+    
+        }
+        else {
+        echo"<h3>Non vi sono attualmente amministratori. Registrane uno!</h3>";
+    }
 ?> </table>
                 <div align="left" style="margin-left:24px;">
                     <h3>Inserire dati nuovo amministratore</h3>

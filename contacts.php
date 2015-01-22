@@ -58,7 +58,7 @@ if (isset($_REQUEST['email'])) {
 	echo "<form method='post' action='contacts.php'>
 		<table class='table' width='40%'>
 			<tr class='table_header'>
-				<td colspan='2'>Contact Form</td>
+				<td colspan='2'><h3>Contattaci</h3></td>
 			</tr>
 			<tr class='row1'>
 				<td>Email:</td>

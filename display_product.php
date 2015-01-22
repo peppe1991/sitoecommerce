@@ -29,34 +29,36 @@ else
     <div align="center" id="mainWrapper">
         <?php include_once("./template_header.php"); ?>
         <div id="pageContent">
-                <?php echo $row["prod_name"];
-                
-            echo '<img src="./inventory_images/' . $_GET["p"]. '.jpg ">' ;
-            echo 'Prezzo: ' . $row["price"] . '€\n';
-            echo $row["description"] . '\n';
-            echo 'Disponibili: ' . $row["instock"] . ' pz\n';
+            <table id="product_view" width="90%"> <tr><h3><?php echo $row["prod_name"];?></h3> </tr>
+                <tr><td align="left">
+        <?php    echo '<img src="./inventory_images/' . $_GET["p"]. '.jpg " height="200px">' ; ?>
+                    </td><td>
+                        
+        <?php
+                    
+            echo 'Prezzo: ' . $row["price"] . '€ <br>';
+            echo $row["description"] . '<br>';
+            echo 'Disponibili: ' . $row["instock"] . ' pz<br>';
            
             ?>
+                    </td>
             <form action="inventory_edit.php?pid=<?php echo $targetID; ?>" enctype="multipart/form-data" name="myForm" id="myform" method="post">
-                    <table width="90%" border="0" cellspacing="0" cellpadding="6">
                         <tr>
                             <td width="20%" align="right">Quantità da acquistare</td>
                             <td width="80%"><label>
-                                    <input name="amount" type="text" id="amount" size="64"  />
+                                    <input name="amount" type="text" id="amount" size="24"  />
                                 </label></td>
                         </tr>
-                        <tr>
-                            <td width="20%" align="right">Scegli un metodo di spedizione:</td>
+             <!--               <td width="20%" align="right">Scegli un metodo di spedizione:</td>
                             <td><select name="ship_method" id="ship_method">
                                    
                                     <option value="1">Corriere TNT</option>
                                     <option value="2">Pacchetto assicurato</option>
                                     <option value="3">Spedizione urgente</option>
-                                </select></td>
-                        </tr>
+                                </select></td>-->
  
-                            <td>&nbsp;</td>
-                            <td><label>
+                           
+                            <td align="center"><label>
                                     <input name="thisID" type="hidden" value="<?php echo $targetID; ?>" />
                                     <input type="submit" name="button" id="button" value="Aggiungi al carrello" />
                                 </label></td>
@@ -69,39 +71,3 @@ else
          
     </div>
 </body>
-
-
-
-
-
-
-
-
-
-    <div align="center" id="mainWrapper">
-        
-
-
-
-
-
-        <div id="pageContent">
-            <table width="100%" border="0" cellspacing="0" cellpadding="15">
-                <tr>
-                    <td width="19%" valign="top"><img src="inventory_images/11000001.jpg" width="142" height="188" alt="maglietta celtics" /><br />
-                        <a href="inventory_images/11000001.jpg">View Full Size Image</a></td>
-                    <td width="81%" valign="top"><h3>maglietta celtics</h3>
-                        <p>$38<br />
-                            <br />
-                            <br />
-                            <br />
-                                                        <br />
-                        </p>
-                        <form id="form1" name="form1" method="post" action="cart.php">
-                            <input type="hidden" name="pid" id="pid" value="11000001" />
-                            <input type="submit" name="button" id="button" value="Add to Shopping Cart" />
-                        </form>
-                    </td>
-                </tr>
-            </table>
-        </div>

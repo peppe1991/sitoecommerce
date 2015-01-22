@@ -11,7 +11,7 @@ include "./storescripts/connect_to_mysql.php";
 $product_list = "";
 /* effettuo una query sulla tabella dei prodotti
  */
-$query = mysql_query("SELECT * FROM prodotto ORDER BY date_added DESC LIMIT 6") or die("Err:" . mysql_error());
+$query = mysql_query("SELECT * FROM prodotto ORDER BY date_added DESC LIMIT 12") or die("Err:" . mysql_error());
 $productCount = mysql_num_rows($query); // conto il numero di oggetti trovati
 if ($productCount > 0) { //se trovo almeno un oggetto nell'inventario
     /*
@@ -19,11 +19,17 @@ if ($productCount > 0) { //se trovo almeno un oggetto nell'inventario
      * Creo delle variabili che conterranno i dati dei prodotti che vado 
      * leggendo nella lista, e le concateno nella variabile principale
      */
+    $count_vet=0;
     while ($row = mysql_fetch_array($query)) {
         $id = $row["prod_code"];
         $product_name = $row["prod_name"];
         $price = $row["price"];
-        $product_list .= "<a href='product.php?p=$id'> <strong>$product_name</strong> </a> - $$price </br></br>";
+        $product_list .= '<td id="vetrina_td"><a href="display_product.php?p='.$id.'"> <strong>'.$product_name.'</strong> </a> - €'.$price .'</br></br><a href="display_product.php?p='.$id.'"><img src="inventory_images/'.$id.'.jpg" width="80px"></a></td>';
+        $count_vet=$count_vet+1;
+        if($count_vet>6){
+               $product_list .= '</tr><tr><td id="vetrina_td"><a href="display_product.php?p='.$id.'"> <strong>'.$product_name.'</strong> </a> - €'.$price .'</br></br><a href="display_product.php?p='.$id.'"><img src="inventory_images/'.$id.'.jpg" width="80px"></a></td>';
+               $count_vet=0;
+        }
     }
 } else {
     $product_list = "Nessun prodotto nel nostro store per il momento";
@@ -39,12 +45,12 @@ if ($productCount > 0) { //se trovo almeno un oggetto nell'inventario
     <div align="center" id="mainWrapper">
         <?php include_once("./template_header.php"); ?>
         <div id="pageContent">
-            <div id="vetrina"><?php
+            <table id="vetrina" width="800px"><tr><?php
                             echo $product_list;
-                            ?></div>
+                            ?></tr></div>
             
 
-        </div>
+        </table>
         <?php include_once("template_footer.php"); ?>
     </div>
 </body>
