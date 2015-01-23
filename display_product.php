@@ -3,6 +3,9 @@ require ("./storescripts/connect_to_mysql.php");
 $targetID = $_GET["p"];
 $query = mysql_query('SELECT * FROM prodotto WHERE prod_code = ' . $targetID);
 $row = mysql_fetch_array($query);
+$cat_code = $row["cat_code"];
+$query2 = mysql_query('SELECT * FROM categoria WHERE cat_code = ' . $cat_code); ;
+$row2 = mysql_fetch_array($query2);
 session_start();
 ?>
 
@@ -46,10 +49,10 @@ else
                     </td><td>
                         
         <?php
-                    
-            echo 'Prezzo: ' . $row["price"] . '€ <br>';
+            echo 'Categoria: <b><a href="navigate_products.php?p='.$row2["cat_code"].'">'.$row2["name"].'</a></b><br>';        
+            echo 'Prezzo: <b>' . $row["price"] . '€ </b><br>';
             echo $row["description"] . '<br>';
-            echo 'Disponibili: ' . $row["instock"] . ' pz<br>';
+            echo 'Disponibili: <b>' . $row["instock"] . '</b> pz<br>';
            
             ?>
                     </td>
