@@ -137,3 +137,17 @@ a:active {
     
  
 }
+#totale {
+    border-top: 1px solid;
+    border-top-color: #000;
+    
+    
+}
+#carrello_td{
+    border-top: 1px #CCC solid;
+    border-bottom: 1px #CCC solid;
+    border-right: 1px #CCC solid;
+   }
+#titolo_cart{
+    border-right: 1px #CCC solid;
+   }

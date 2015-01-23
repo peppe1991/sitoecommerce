@@ -22,9 +22,9 @@ if (isset($_GET["n"])) {
             <?php
             $query = mysql_query("SELECT * FROM carrello WHERE user_id = " . $_SESSION["userid"]);
             ?>
-            <table id="carello" width="600px">
+            <table id="carrello" width="600px">
                 <tr>
-                    <td><b> Nome Prodotto</b></td> <td> Prezzo Prodotto </td> <td> Quantita'</td> <td>€</td>
+                    <td></td>    <td id="titolo_cart"><b> Nome Prodotto</b></td> <td id="titolo_cart"> Prezzo Prodotto </td> <td id="titolo_cart"> Quantita'</td> <td id="titolo_cart">€</td>
                 </tr> 
                 <?php
                 $tot = 0;
@@ -38,14 +38,14 @@ if (isset($_GET["n"])) {
                         $prod_price = $row2["price"];
                         $tot += $prod_quantity * $prod_price;
                     }
-                    $string = "<td>" . $prod_name . "</td><td>" . $prod_quantity . "</td><td>" . $prod_price . "</td><td>" . $prod_price * $prod_quantity . "</td>";
-                    echo '<td> <a href="cart.php?n=' . $prod_cartnumber . ' ">cancella</a><br /> </td>' . $string;
+                    $string = '<td><img src="inventory_images/'.$row["prod_code"].'.jpg" '.'height='.'"20px"></td><td id='.'"carrello_td">' . $prod_name . "</td><td id="."carrello_td".">" . $prod_price . "€</td><td id="."carrello_td".">" . $prod_quantity . "</td><td id="."carrello_td".">" . $prod_price * $prod_quantity . "€</td>";
+                    echo $string.'<td> <a href="cart.php?n=' . $prod_cartnumber . ' ">cancella</a><br /> </td>';
                     echo "</tr>";
                 }
                 ?>
                 <tr>
-                    <td></td> <td></td> <td></td> <td><?php echo "$tot" ?></td>
-                    <td></td> <td></td> <td></td> <td><input type="submit" name="pay" id="button" value="Paga ora" />
+                    <td></td>  <td></td> <td></td>  <td id="totale" colspan="2" style="text-align: right;"><?php echo "Totale: $tot €" ?></td>
+                    <td></td>  <td></td> <td></td> <td></td> <td><input type="submit" name="pay" id="button" value="Paga ora" />
                     </td>
                 </tr> 
 
