@@ -113,8 +113,8 @@ if ($productCount > 0) { //se trovo almeno un oggetto nell'inventario
         $instock2 = $row["instock"];
         $date_added = strftime("%b %d, %Y", strtotime($row["date_added"]));
         $product_list .= "Product ID: $id - <strong>$product_name</strong> - $$price - Quantità disponibile: $instock2 -- <em>aggiunto il $date_added</em> "
-                . "&nbsp; &nbsp; &nbsp; <a href='inventory_edit.php?pid=$id'>edit</a> &bull; "
-                . "<a href='inventory_list.php?deleteid=$id'>delete</a><br />";
+                . "&nbsp; &nbsp; &nbsp; <a href='inventory_edit.php?pid=$id'>edita</a> &bull; "
+                . "<a href='inventory_list.php?deleteid=$id'>cancella</a><br />";
     }
 } else {
     $product_list = "L'inventario è attualmente vuoto";

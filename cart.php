@@ -27,12 +27,14 @@
                     echo "<tr>";
                     $query2 = mysql_query("SELECT * FROM prodotto WHERE prod_code = " . $row["prod_code"]) or die (mysql_error());
                     $prod_quantity = $row["quantity"];
+                    $prod_cartnumber = $row["cart_element"];
                     while ($row2 = mysql_fetch_array($query2)) {
                         $prod_name = $row2["prod_name"];
                         $prod_price = $row2["price"];
-                        $tot += $row["quantity"] * $row2["price"];
+                        $tot += $prod_quantity * $prod_price;
                     }
-                    echo "<td>" . $prod_name . "</td><td>" . $prod_quantity . "</td><td>" . $prod_price . "</td><td>" . $prod_price * $prod_quantity . "</td>";
+                    $string = "<td>" . $prod_name . "</td><td>" . $prod_quantity . "</td><td>" . $prod_price . "</td><td>" . $prod_price * $prod_quantity . "</td>";
+                    echo '<td> <a href="cart.php?n='. $prod_cartnumber . ' ">cancella</a><br /> </td>' . $string;
                     echo "</tr>";
                 }
                 ?>
