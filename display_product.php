@@ -21,7 +21,6 @@ if (isset($_POST["amount"]))
     }
     else
     {
-        echo'ciao';
         header ("./login.php?c=2");
     }
 }
