@@ -20,6 +20,7 @@ if (isset($_POST["amount"])) {
         } else {
             $query = mysql_query("INSERT INTO carrello (prod_code, user_id, quantity)
         VALUES ('$targetID','$userid','$quantity' )") or die(mysql_error());
+            header ("location: ./display_product.php?p=$targetID&err=0");
         }
     } else {
         header("location: ./login.php?c=2");
@@ -78,7 +79,12 @@ echo 'Disponibili: <b>' . $row["instock"] . '</b> pz<br>';
             </form>
 <?php
 if (isset($_GET["err"])) {
+    $message = $_GET["err"];
+    if ($message == 1)
+        
     echo "La quantità richiesta eccede l'attuale quantità a nostra disposizione";
+    if ($message ==0)
+        echo "Il prodotto è stato correttamente aggiunto al carrello";
 }
 ?>
         </div>
