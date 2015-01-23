@@ -3,7 +3,7 @@
 require_once 'connect_to_mysql.php';
 
 $sqlCommand = "CREATE TABLE IF NOT EXISTS transazione (
-    id int(4) NOT NULL auto_increment,
+    id int(32) NOT NULL auto_increment,
     user_id int(32) NOT NULL,
     data date NOT NULL,
     pag_code int(4) NOT NULL,
