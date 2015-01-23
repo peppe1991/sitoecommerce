@@ -18,14 +18,14 @@ if (isset($_POST["amount"]))
     $userid = $_SESSION["userid"];
     if ($quantity > $row["instock"])
     {
-        header ("./display_product.php?err=1");
+        header ("location: ./display_product.php?p=$targetID&err=1");
     }
     $query = mysql_query("INSERT INTO carrello (prod_code, user_id, quantity)
         VALUES ('$targetID','$userid','$quantity' )") or die (mysql_error());
     }
     else
     {
-        header ("./login.php?c=2");
+        header ("location: ./login.php?c=2");
     }
 }
 else
@@ -61,26 +61,31 @@ else
                     </td>
             <form action="display_product.php?p=<?php echo $targetID; ?>" enctype="multipart/form-data" name="myForm" id="myform" method="post">
                         <tr>
-                            <td width="20%" align="right">Quantità da acquistare</td>
+                            <td width="20%" align="right" >Quantità da acquistare</td>
                             <td width="80%"><label>
-                                    <input name="amount" type="text" id="amount" size="24"  />
+                                    <input name="amount" type="text" id="amount" size="24" value="1" />
                                 </label></td>
                         </tr>
-           
+             <!--               <td width="20%" align="right">Scegli un metodo di spedizione:</td>
+                            <td><select name="ship_method" id="ship_method">
+                                   
+                                    <option value="1">Corriere TNT</option>
+                                    <option value="2">Pacchetto assicurato</option>
+                                    <option value="3">Spedizione urgente</option>
+                                </select></td>-->
  
                            
-                        <tr> <td align="center"><label>
+                            <td align="center"><label>
                                     <input name="thisID" type="hidden" value="<?php echo $targetID; ?>" />
                                     <input type="submit" name="button" id="button" value="Aggiungi al carrello" />
                                 </label></td>
                         </tr>
-                        
                     </table>
                 </form>
                 <?php 
                 if (isset($_GET["err"]))
                 {
-                    
+                    echo "La quantità richiesta eccede l'attuale quantità a nostra disposizione";
                 }
                 ?>
         </div>
