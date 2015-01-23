@@ -16,6 +16,10 @@ if (isset($_POST["amount"]))
     {
     $quantity = $_POST["amount"];
     $userid = $_SESSION["userid"];
+    if ($quantity > $row["instock"])
+    {
+        header ("./display_product.php?err=1");
+    }
     $query = mysql_query("INSERT INTO carrello (prod_code, user_id, quantity)
         VALUES ('$targetID','$userid','$quantity' )") or die (mysql_error());
     }
@@ -78,7 +82,12 @@ else
                         </tr>
                     </table>
                 </form>
-
+                <?php 
+                if (isset($_GET["err"]))
+                {
+                    
+                }
+                ?>
         </div>
         <?php include_once("template_footer.php"); ?>
          
