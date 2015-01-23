@@ -11,7 +11,7 @@ include "./storescripts/connect_to_mysql.php";
 $product_list = "";
 /* effettuo una query sulla tabella dei prodotti
  */
-$query = mysql_query("SELECT * FROM prodotto ORDER BY date_added DESC LIMIT 12") or die("Err:" . mysql_error());
+$query = mysql_query("SELECT * FROM prodotto ORDER BY date_added DESC LIMIT 18") or die("Err:" . mysql_error());
 $productCount = mysql_num_rows($query); // conto il numero di oggetti trovati
 if ($productCount > 0) { //se trovo almeno un oggetto nell'inventario
     /*
@@ -26,8 +26,8 @@ if ($productCount > 0) { //se trovo almeno un oggetto nell'inventario
         $price = $row["price"];
         $product_list .= '<td id="vetrina_td"><a href="display_product.php?p='.$id.'"> <strong>'.$product_name.'</strong> </a> - €'.$price .'</br></br><a href="display_product.php?p='.$id.'"><img src="inventory_images/'.$id.'.jpg" width="80px"></a></td>';
         $count_vet=$count_vet+1;
-        if($count_vet>6){
-               $product_list .= '</tr><tr><td id="vetrina_td"><a href="display_product.php?p='.$id.'"> <strong>'.$product_name.'</strong> </a> - €'.$price .'</br></br><a href="display_product.php?p='.$id.'"><img src="inventory_images/'.$id.'.jpg" width="80px"></a></td>';
+        if($count_vet>5){
+               $product_list .= '</tr><tr>';
                $count_vet=0;
         }
     }
@@ -45,13 +45,22 @@ if ($productCount > 0) { //se trovo almeno un oggetto nell'inventario
     <div align="center" id="mainWrapper">
         <?php include_once("./template_header.php"); ?>
         <div id="pageContent">
-            <table id="vetrina" width="800px"><tr><?php
+            <table id="vetrina" width="800px"><tr><h3>Ecco i nuovi arrivi</h3>
+                <p>Cerchi altri prodotti? <a href="navigate_products.php">Naviga nelle nostre categorie!</a></p><?php
                             echo $product_list;
-                            ?></tr></div>
+                            ?></tr>
+                <br>
+                
+        
+        </div>
             
 
         </table>
-        
+        <br>
+                <p>Cerchi altri prodotti? <a href="navigate_products.php">Naviga nelle nostre categorie!</a></p><br>
+                <br>
+                <br>
+                
     </div><?php include_once("template_footer.php"); ?>
 </body>
 </html>
