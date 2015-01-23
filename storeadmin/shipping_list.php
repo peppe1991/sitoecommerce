@@ -13,7 +13,7 @@ ini_set('display_errors', '1');
 <?php
 // Chiedo comferma per iniziare la procedura di eliminazione del prodotto
 if (isset($_GET['deleteid'])) {
-    echo 'Vuoi veramente eliminare questa categoria (CODICE ' . $_GET['deleteid'] . ')? '
+    echo 'Vuoi veramente eliminare questo metodo? (CODICE ' . $_GET['deleteid'] . ')? '
             . '<a href="shipping_list.php?yesdelete=' . $_GET['deleteid'] . '">Yes</a> | '
             . '<a href="shipping_list.php">No</a>';
     exit();
@@ -84,8 +84,8 @@ if ($metCount > 0) { //se trovo almeno un oggetto nell'inventario
         $id = $row["met_code_sped"];
         $shipping_name = $row["met_name"];
         $met_price = $row["met_price"];
-        $shipping_list .= "ID: $id - <strong>$shipping_name</strong> - Costo: $met_price €" ."&nbsp; &nbsp; &nbsp; <a href='shipping_edit.php?pid=$id'>edit</a> &bull; "
-                . "<a href='shipping_list.php?deleteid=$id'>delete</a><br />";
+        $shipping_list .= "ID: $id - <strong>$shipping_name</strong> - Costo: $met_price €" ."&nbsp; &nbsp; &nbsp; <a href='shipping_edit.php?pid=$id'>edita</a> &bull; "
+                . "<a href='shipping_list.php?deleteid=$id'>cancella</a><br />";
     }
 } else {
     $shipping_list = "Non sono stati inseriti metodi di spedizione. Inseriscine almeno uno per i tuoi clienti";
