@@ -32,6 +32,7 @@ else
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title><?php echo $row["prod_name"]  ?></title>
     <link rel="stylesheet" href="style/style.css" type="text/css" media="screen" />
+
 </head>
 <body>
     <div align="center" id="mainWrapper">
@@ -39,7 +40,9 @@ else
         <div id="pageContent">
             <table id="product_view" width="90%"> <tr><h3><?php echo $row["prod_name"];?></h3> </tr>
                 <tr><td align="left">
-        <?php    echo '<img src="./inventory_images/' . $_GET["p"]. '.jpg " height="200px">' ; ?>
+                       <?php   echo '<img id="zoom" src="./inventory_images/' . $_GET["p"]. '.jpg " height="200px data-zoom-image="./inventory_images/' . $_GET["p"]. '.jpg ">' ; ?>
+                        
+                        <br>   <a href="inventory_images/<?php echo $targetID; ?>.jpg">Ingrandisci anteprima</a>
                     </td><td>
                         
         <?php

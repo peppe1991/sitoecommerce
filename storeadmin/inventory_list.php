@@ -74,7 +74,6 @@ if (isset($_POST['product_name']) && isset($_POST['price']) && isset($_POST['sel
             '$subcategory','$brand', '$description',now())") or die(mysql_error());*/
     $pid = mysql_insert_id();
     //Aggiungi l'immagine all'archivio immagine con il nome adequato
-    
     $newname = $pid.'.jpg';
     $uploaded = move_uploaded_file($_FILES['fileField']['tmp_name'], "../inventory_images/".$newname);  
     if (!$uploaded)
