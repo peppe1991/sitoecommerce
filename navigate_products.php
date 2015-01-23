@@ -54,7 +54,7 @@ $query = mysql_query("SELECT name, cat_code FROM categoria") or die (mysql_error
                                                   if($num_prod>0){
                         while ($row = mysql_fetch_array($query)) {
                             $count_prod = $count_prod + 1;
-                            if ($count_prod < 10) {
+                            if ($count_prod < 9) {
                                 ?>
 
                                 <td id="navigateproducts_td">  <a href="display_product.php?p=<?php echo $row["prod_code"]; ?>"><?php echo $row["prod_name"]; ?> <?php echo "</a> - €" . $row["price"]; ?><br> <a href="display_product.php?p=<?php echo $row["prod_code"]; ?>"> <img src="inventory_images/<?php echo $row["prod_code"]; ?>.jpg" height="80px">  </a>
@@ -63,6 +63,8 @@ $query = mysql_query("SELECT name, cat_code FROM categoria") or die (mysql_error
                                 <?php
                             } else {
                                 $count_prod = 0;
+                                ?> <td id="navigateproducts_td"> <a href="display_product.php?p=<?php echo $row["prod_code"]; ?>"><?php echo $row["prod_name"]; ?> <?php echo "</a> - €" . $row["price"]; ?><br> <a href="display_product.php?p=<?php echo $row["prod_code"]; ?>"> <img src="inventory_images/<?php echo $row["prod_code"]; ?>.jpg" height="80px">  </a>
+                                </td><?php
                                 echo "</tr><tr>";
                             }
                             ?>  
