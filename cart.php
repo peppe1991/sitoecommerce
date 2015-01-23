@@ -45,7 +45,7 @@ if (isset($_GET["n"])) {
                 ?>
                 <tr>
                     <td></td>  <td></td> <td></td>  <td id="totale" colspan="2" style="text-align: right;"><?php echo "Totale: $tot €" ?></td>
-                    <td></td>  <td></td> <td></td> <td></td> <td><input type="submit" name="pay" id="button" value="Paga ora" />
+                    <td></td>  <td></td> <td></td> <td></td> <td><input type="submit" name="pay" id="button" value="Completa l'ordine e paga ora" />
                     </td>
                 </tr> 
 
