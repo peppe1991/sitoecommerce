@@ -12,7 +12,7 @@ session_start();
 <?php
 if (isset($_POST["amount"]))
 {
-    if (isset($_SESSION["id"]))
+    if (isset($_SESSION["userid"]))
     {
     $quantity = $_POST["amount"];
     $userid = $_SESSION["userid"];
