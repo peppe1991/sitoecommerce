@@ -9,7 +9,7 @@ include "../storescripts/connect_to_mysql.php";
 /* Ottengo i dati inseriti nel form e li traduco in una istruzione mysql per
  * inserire un nuovo oggetto nel database.
  */
-if (isset($_POST['shipping_name'])) /* se è stato cliccato il bottone per
+if (isset($_POST['shipping_name2'])) /* se è stato cliccato il bottone per
  * inserire un nuova categoria
  */ {
     /*
@@ -20,11 +20,11 @@ if (isset($_POST['shipping_name'])) /* se è stato cliccato il bottone per
      */
    // $product_code = mysql_real_escape_string($_POST['code']);
     $pid = mysql_real_escape_string($_POST['thisID']);
-    $shipping_name = mysql_real_escape_string($_POST['shipping_name']); 
+    $shipping_name2 = mysql_real_escape_string($_POST['shipping_name2']); 
     $met_price= mysql_real_escape_string($_POST['met_price']); 
     
     
-    $sql = mysql_query("UPDATE  metodopagamento  SET met_name='$shipping_name', met_price='$met_price' WHERE met_code_sped = '$pid'") or die(mysql_error());
+    $sql = mysql_query("UPDATE  metodopagamento SET met_name='$shipping_name2', met_price='$met_price' WHERE met_code_sped = '$pid'") or die(mysql_error());
     
     
     
@@ -51,7 +51,7 @@ if (isset($_GET['pid'])) /* se è settata la variabile che passiamo dall'altra
     if ($metCount > 0) {
         while ($row = mysql_fetch_array($sql)) {
             $shipping_id = $row["met_code_sped"];
-            $shipping_name = $row["met_name"];
+            $shipping_name2 = $row["met_name"];
             $met_price = $row["met_price"];
            
         }
@@ -95,7 +95,7 @@ if (isset($_GET['pid'])) /* se è settata la variabile che passiamo dall'altra
                             
                             
                             <td width="80%"><label>
-                                    <input name="shipping_name" type="text" id="shipping_name" value='<?php echo $shipping_name; ?>' size="64" />
+                                    <input name="shipping_name2" type="text" id="shipping_name2" value='<?php echo $shipping_name2; ?>' size="64" />
                                 </label></td>
                         </tr>
                         <tr>
