@@ -39,7 +39,7 @@ $found = mysql_num_rows($query);
 if ($found == 0)
 {
     echo "Sembra che ci sia un problema con la tua sessione, per favore ripeti la procedura di login.";
-    header($location_admin_login);
+    header($location_login);
     exit();
 }
 ?>
