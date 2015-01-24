@@ -13,31 +13,11 @@ ini_set('display_errors', '1');
 $userid = $_SESSION["userid"];
 ?>
 <?php
-// Chiedo comferma per iniziare la procedura di eliminazione del prodotto
-if (isset($_GET['deleteid'])) {
-    echo 'Vuoi veramente eliminare questo prodotto (CODICE ' . $_GET['deleteid'] . ')? '
-    . '<a href="inventory_list.php?yesdelete=' . $_GET['deleteid'] . '">Yes</a> | '
-    . '<a href="inventory_list.php">No</a>';
-    exit();
+if (isset($_GET['deleten'])) {
+    $add_to_delete = $_GET['deleten'];
+    $query = mysql_query("DELETE FROM indirizzo WHERE user_id=$userid and add_code=$add_to_delete") or die(mysql_error());
 }
 
-if (isset($_GET['yesdelete'])) { //se la risposta è affermativa procedo con l'eliminazione
-    // remove item from system and delete its picture
-    // delete from database
-    $id_to_delete = $_GET['yesdelete'];
-    $sql = mysql_query("DELETE FROM prodotto WHERE prod_code='$id_to_delete' LIMIT 1") or die(mysql_error());
-    // procediamo inoltre con l'eliminazione dell'immagine che accompagnava
-    // il prodotto
-    $pictodelete = ("../inventory_images/$id_to_delete.jpg");
-    if (file_exists($pictodelete)) {
-        unlink($pictodelete);
-    }
-    /* ricarico la pagina attuale, sia che l'admin abbia deciso la cancellazione
-     * dell'oggetto sia nel caso contrario.
-     */
-    header("location: inventory_list.php");
-    exit();
-}
 ?>
 <?php
 /* Ottengo i dati inseriti nel form e li traduco in una istruzione mysql per
@@ -84,10 +64,8 @@ if (isset($_POST['via']) && isset($_POST['citta']) && isset($_POST['cap']) && is
     /* $sql = mysql_query("INSERT INTO prodotto (prod_code, prod_name, instock, price, category, brand, description, date_added) 
       VALUES('$product_code, $product_name',1,'$price',
       '$subcategory','$brand', '$description',now())") or die(mysql_error()); */
-    $pid = mysql_insert_id();
-    //Aggiungi l'immagine all'archivio immagine con il nome adequato
-    $newname = $pid . '.jpg';
-    $uploaded = move_uploaded_file($_FILES['fileField']['tmp_name'], "../inventory_images/" . $newname);
+    $deleten = mysql_insert_id();
+   
     if (!$uploaded) {
         echo "ERRORE: non è riuscita la creazione dell'immagine";
     }
@@ -101,24 +79,12 @@ if (isset($_POST['via']) && isset($_POST['citta']) && isset($_POST['cap']) && is
 
 
 <?php
-/* In questo blocco php c'è una procedura che permette di visualizzare l'intero
- * inventario sotto forma di lista
- */
-/* per il momento inizializzo la variabile con una stringa vuota
- */
-$product_list = "";
-/* effettuo una query sulla tabella dei prodotti
- */
 $query = mysql_query("SELECT * FROM indirizzo WHERE user_id=$userid ORDER BY add_code") or die("Err:" . mysql_error());
-$productCount = mysql_num_rows($query); // conto il numero di oggetti trovati
-if ($productCount > 0) { //se trovo almeno un oggetto nell'inventario
-    /*
-     * Costruisco la mia lista di prodotti (finchè ne trovo nell'inventario).
-     * Creo delle variabili che conterranno i dati dei prodotti che vado 
-     * leggendo nella lista, e le concateno nella variabile principale
-     */
+$addCount = mysql_num_rows($query); 
+if ($addCount > 0) { 
+   
     while ($row = mysql_fetch_array($query)) {
-        $n = mysql_insert_id();
+        $n = $row["add_code"];
         $via = $row["via"];
         $citta = $row["citta"];
         $cap = $row["CAP"];
@@ -129,7 +95,7 @@ if ($productCount > 0) { //se trovo almeno un oggetto nell'inventario
         $provincia = $row["provincia"];
         $address_list = "Indirizzo n.: $n -- via $via $civico $appartamento $citta $cap ($provincia) - Regione: $regione -Paese: $paese"
                 . " &bull; "
-                . "<a href='address_list.php?deleten=$n'>cancella</a><br />";
+                . "<a href='address_list.php?userid=$userid&deleten=$n'>cancella</a><br />";
     }
 } else {
     $address_list = "Attualmente non hai registrato nemmeno un indirizzo";
