@@ -7,7 +7,6 @@ $query = mysql_query('SELECT * FROM prodotto WHERE prod_code = ' . $targetID);
 $row = mysql_fetch_array($query);
 $cat_code = $row["cat_code"];
 $query2 = mysql_query('SELECT * FROM categoria WHERE cat_code = ' . $cat_code);
-;
 $row2 = mysql_fetch_array($query2);
 session_start();
 ?>
