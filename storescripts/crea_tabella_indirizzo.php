@@ -2,7 +2,7 @@
 require_once 'connect_to_mysql.php';
 
 $sqlCommand = "CREATE TABLE IF NOT EXISTS  indirizzo (
-    add_code int(8)  auto_increment NOT NULL,
+    add_code int(4)  auto_increment NOT NULL,
     user_id int(8) NOT NULL,
     via varchar(20) NOT NULL,
     civico int(6),
@@ -12,7 +12,7 @@ $sqlCommand = "CREATE TABLE IF NOT EXISTS  indirizzo (
     provincia varchar(4),
     regione varchar (10),
     paese varchar (15),
-    PRIMARY KEY (add_code),
+    PRIMARY KEY (add_code,user_id),
     FOREIGN KEY (user_id) REFERENCES utente (id)
     )";
 if (mysql_query($sqlCommand))
