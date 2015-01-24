@@ -54,11 +54,32 @@ body {
     text-align: center;
     border-color: #4a5deb;    
 }
+
 #admin_td:hover {
     border: 1px solid;
     background-color: #cccccc;
     border-color: #4a5deb;    
 }
+
+#panel_menu {
+   
+    background-color: #FFF;
+    font-weight: bold;
+  
+}
+#panel_td {
+    border: 1px solid;
+    text-align: center;
+    border-color: #4a5deb;    
+}
+#panel_td:hover {
+    border: 1px solid;
+    background-color: #cccccc;
+    border-color: #4a5deb;    
+}
+
+
+
 
 #navigateproducts {
    

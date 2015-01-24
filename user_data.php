@@ -39,7 +39,8 @@ if( isset($_POST["passwordold"]) && isset($_POST["passwordnew"]) ){
     $id = mysql_real_escape_string($_POST['thisID']);
     $passwordnew = md5(preg_replace('#[^A-Za-z0-9]#i', '', $_POST["passwordnew"]));
     $query = mysql_query("UPDATE utente SET password='$passwordnew' WHERE id='$id'") or die("Err:" . mysql_error());    
-    
+    $_SESSION["password"] = $passwordnew;
+
 }
     
 
@@ -56,6 +57,7 @@ if (isset($_POST["username"]) || isset($_POST["email"])) {
      */
     
     $query = mysql_query("UPDATE utente SET username='$username', email='$email' WHERE id='$id'") or die("Err:" . mysql_error());
+    $_SESSION["username"] = $username;
 }
 
 header("location: user_panel.php");

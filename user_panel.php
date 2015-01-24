@@ -11,16 +11,19 @@ include "user_verify_script.php"
 
 <body>
     <div align="center" id="mainWrapper">
-        <?php include_once("./template_header.php"); ?>
+        <?php include_once("template_header.php"); ?>
         <div id="pageContent">
             <p><h2>Benvenuto nel pannello utente. </h2></p>
             <table id="panel_menu" width="800px">
                 <tr id="panel_menu">
-                    <td id="panel_td"> <a href="./user_data.php"> <img src="./style/elencoprodotti.png" height="100px"> <br> Modifica i dati personali </a></td> 
-                    <td id="panel_td"><a href="./address_list.php"><img src="./style/category.png" height="100px"> <br> Modifica Indirizzi</a> </td> 
-                    <td id="panel_td"><img src="./style/fatture.png" height="100px"> <br>I miei acquisti</td>
-            </table></div>
-        <?php include_once("./template_footer.php"); ?>
+                    <td id="panel_td" width="30%"> <a href="./user_data.php"> <img src="./style/editPD.png" height="100px"> <br> Modifica i dati personali </a></td> 
+                    <td id="panel_td" width="30%"><a href="./address_list.php"><img src="./style/category.png" height="100px"> <br> Modifica Indirizzi</a> </td> 
+                    <td id="panel_td" width="30%"><img src="./style/fatture.png" height="100px"> <br>I miei acquisti</td>
+            </table>
+            <br>
+            <br>
+        </div>
+        <?php include_once("template_footer.php"); ?>
 
     </div>
 

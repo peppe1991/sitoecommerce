@@ -46,7 +46,12 @@ if( isset($_POST["passwordold"]) && isset($_POST["passwordnew"]) ){
     $pid = mysql_real_escape_string($_POST['thisID']);
     $passwordnew = md5(preg_replace('#[^A-Za-z0-9]#i', '', $_POST["passwordnew"]));
     $query = mysql_query("UPDATE amministratore SET password='$passwordnew' WHERE id='$pid'") or die("Err:" . mysql_error());    
-    
+   
+    if ( $_SESSION["userid"] == $targetID ){
+    $_SESSION["password"] = $passwordnew;
+ 
+}
+       
 }
     
 
@@ -63,11 +68,15 @@ if (isset($_POST["username"]) || isset($_POST["email"])) {
      */
     
     $query = mysql_query("UPDATE amministratore SET username='$username', email='$email' WHERE id='$pid'") or die("Err:" . mysql_error());
+
+    if( $_SESSION["userid"] == $targetID ){
+    $_SESSION["username"] = $username;    
 }
 
 header("location: admin_list.php");
-}
+} }
 ?>
+
 <!DOCTYPE html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
