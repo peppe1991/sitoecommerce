@@ -24,7 +24,7 @@ if (isset($_GET['yesdelete']))
     // remove item from system and delete its picture
     // delete from database
     $id_to_delete = $_GET['yesdelete'];
-    $sql = mysql_query("DELETE FROM metodospedizione WHERE met_cod_sped='$id_to_delete' LIMIT 1") or die(mysql_error());
+    $sql = mysql_query("DELETE FROM metodospedizione WHERE ship_code='$id_to_delete' LIMIT 1") or die(mysql_error());
     
     
     /*ricarico la pagina attuale, sia che l'admin abbia deciso la cancellazione
@@ -72,7 +72,7 @@ if (isset($_POST['shipping_name'])) /* se è stato cliccato il bottone per
 $shipping_list = "";
 /* effettuo una query sulla tabella dei prodotti
  */
-$query = mysql_query("SELECT * FROM metodospedizione ORDER BY met_code_sped DESC") or die("Err:" . mysql_error());
+$query = mysql_query("SELECT * FROM metodospedizione ORDER BY ship_code DESC") or die("Err:" . mysql_error());
 $metCount = mysql_num_rows($query); // conto il numero di oggetti trovati
 if ($metCount > 0) { //se trovo almeno un oggetto nell'inventario
     /*
@@ -81,7 +81,7 @@ if ($metCount > 0) { //se trovo almeno un oggetto nell'inventario
      * leggendo nella lista, e le concateno nella variabile principale
      */
     while ($row = mysql_fetch_array($query)) {
-        $id = $row["met_code_sped"];
+        $id = $row["ship_code"];
         $shipping_name = $row["met_name"];
         $met_price = $row["met_price"];
         $shipping_list .= "ID: $id - <strong>$shipping_name</strong> - Costo: $met_price €" ."&nbsp; &nbsp; &nbsp; <a href='shipping_edit.php?pid=$id'>edita</a> &bull; "
@@ -137,7 +137,7 @@ if ($metCount > 0) { //se trovo almeno un oggetto nell'inventario
                                 </label></td>
                         </tr>
                         <tr>
-                            <td width="20%" align="right">Costo per il cliente</td>
+                            <td width="20%" align="right">Costo per il cliente €</td>
                             <td width="80%"><label>
                                     <input name="met_price" type="text" id="met_price" size="64" />
                                 </label></td>

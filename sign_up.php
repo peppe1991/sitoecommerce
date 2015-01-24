@@ -44,8 +44,8 @@ if (isset($_POST["username"]) && isset($_POST["password"])
          * 
          */
         
-        $sqlCommand = mysql_query("INSERT INTO utente ( username, password, name, surname, cod_fisc, last_log_date)
-            VALUES ('$username', '$password', '$name', '$surname', '$fiscode', NOW()) ") or die(mysql_error());
+        $sqlCommand = mysql_query("INSERT INTO utente ( username, password, name, surname, cod_fisc, last_log_date, last_cart_mod_date)
+            VALUES ('$username', '$password', '$name', '$surname', '$fiscode', NOW(), NOW()) ") or die(mysql_error());
 
       //  $query = mysql_query("SELECT id FROM utente WHERE username = ". $username) or die (mysql_error());
       //  $row = mysql_fetch_row($query);

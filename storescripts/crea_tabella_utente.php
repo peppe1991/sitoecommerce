@@ -7,6 +7,7 @@ $sqlCommand = "CREATE TABLE IF NOT EXISTS utente (
     username varchar(24) NOT NULL,
     password varchar(32) NOT NULL,
     last_log_date date NOT NULL,
+    last_cart_mod_date date NOT NULL,
     name varchar (24) NOT NULL,
     surname varchar (24) NOT NULL,
     cod_fisc varchar (20) NOT NULL,

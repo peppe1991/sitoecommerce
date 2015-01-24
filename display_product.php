@@ -21,6 +21,7 @@ if (isset($_POST["amount"])) {
         } else {
             $query = mysql_query("INSERT INTO carrello (prod_code, user_id, quantity)
         VALUES ('$targetID','$userid','$quantity' )") or die(mysql_error());
+            $query = mysql_query ("UPDATE utente SET last_cart_mod_date=NOW() WHERE user_id =$userid");
             header ("location: ./display_product.php?p=$targetID&err=0");
         }
     } else {

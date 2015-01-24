@@ -6,7 +6,7 @@ require 'user_verify_script.php';
 <?php
 if ((isset($_GET["p"])) && (isset($_GET["m"]))) {
     $userid = $_GET["p"];
-    $met_sped_code = $_GET["m"];
+    $ship_code = $_GET["m"];
     
 }
 ?>
@@ -47,7 +47,7 @@ $getaddress = mysql_query("SELECT * FROM carrello WHERE user_id = " . $userid);
                     while ($row2 = mysql_fetch_array($query2)) {
                         $prod_name = $row2["prod_name"];
                         $prod_price = $row2["price"];
-                    $query3 = mysql_query("SELECT * FROM metodospedizione WHERE met_code_sped = " . $met_sped_code) or die(mysql_error());
+                    $query3 = mysql_query("SELECT * FROM metodospedizione WHERE ship_code = " . $ship_code) or die(mysql_error());
                     while ($row3 = mysql_fetch_array($query3)) {  
                         $met_name = $row3["met_name"];
                         $met_price = $row3["met_price"];

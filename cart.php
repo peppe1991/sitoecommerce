@@ -54,7 +54,7 @@ if (isset($_GET["checkout"])) {
                 ?>
                 <tr>
                 
-                    <td></td>  <td></td> <td></td>  <td id="totale" colspan="2" style="text-align: right;"><?php echo "Totale: $tot €" ?></td>
+                    <td></td>  <td></td> <td></td>  <td id="totale" colspan="2" style="text-align: right;"><?php echo "Subtotale: $tot €" ?></td>
 
                     <td></td>  <td></td> <td></td> <td></td> <td>
                      </td>
@@ -78,10 +78,10 @@ if ($categoryCount > 0) { //se trovo almeno una categoria
      */
     echo '<select name="metodospedizione" id="metodospedizione">';
     while ($row = mysql_fetch_array($query)) {
-        $met_code_sped = $row["met_code_sped"];
+        $codice_metodo = $row["ship_code"];
         $met_name = $row["met_name"];
         $met_price = $row["met_price"];
-        echo '<option value="'.$met_code_sped .'">' .$met_name.' - '.$met_price.'€</option>';
+        echo '<option value="'.$codice_metodo .'">' .$met_name.' - '.$met_price.'€</option>';
                                    
             
          
