@@ -1,4 +1,6 @@
-<?php session_start() ?>
+<?php
+session_start() 
+?>
 <?php
 $my_email = "giuseppe.palazzotto@gmail.com"; //email a cui spedire il modulo
 ?>

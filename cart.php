@@ -1,11 +1,6 @@
-
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Il tuo carrello - NewEcommerce</title>
-    <link rel="stylesheet" href="style/style.css" type="text/css" media="screen" />
-</head>
 <?php
 require './storescripts/connect_to_mysql.php';
+require './user_verify_script.php';
 session_start();
 ?>
 
@@ -15,6 +10,12 @@ if (isset($_GET["n"])) {
     $sql = mysql_query("DELETE FROM carrello WHERE cart_element='$item_to_delete' LIMIT 1") or die(mysql_error());
 }
 ?>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Il tuo carrello - NewEcommerce</title>
+    <link rel="stylesheet" href="style/style.css" type="text/css" media="screen" />
+</head>
 
 <body>
     <div align="center" id="mainWrapper">

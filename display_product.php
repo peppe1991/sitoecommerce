@@ -1,5 +1,7 @@
 <?php
 require ("./storescripts/connect_to_mysql.php");
+?>
+<?php
 $targetID = $_GET["p"];
 $query = mysql_query('SELECT * FROM prodotto WHERE prod_code = ' . $targetID);
 $row = mysql_fetch_array($query);
