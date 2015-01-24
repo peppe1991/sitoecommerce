@@ -14,7 +14,7 @@ require "crea_tabella_carrello.php";
 // require "crea_tabella_metodo_pagamento.php";
 require "crea_tabella_metodo_spedizione.php";
 // require "crea_tabella_transazione.php";
-// require "crea_tabella_indirizzo.php";
+require "crea_tabella_indirizzo.php";
 
 echo "<br>" . "Tutte le tabelle sono state create";
 $adminpassword= md5("admin");

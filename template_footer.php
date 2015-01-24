@@ -4,7 +4,7 @@
     {
         $id= $_SESSION["userid"];
         $username = $_SESSION["username"]
-                ?>Benvenuto <?php echo $username; ?> (Non sei tu? Clicca: <a href="logout.php"> Logout </a> ) <a href="./user_panel.php?id=<?php echo $id;?>">   Modifica i tuoi dati</a>
+                ?>Benvenuto <?php echo $username; ?> (Non sei tu? Clicca: <a href="logout.php"> Logout </a> ) -  <a href="./user_panel.php?id=<?php echo $id;?>">   Modifica i tuoi dati</a>
     <?php
     }
     else

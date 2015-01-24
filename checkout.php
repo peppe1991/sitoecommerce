@@ -2,25 +2,27 @@
 require 'storescripts/connect_to_mysql.php';
 require 'user_verify_script.php';
 ?>
-<?php
 
-if (isset($_GET["p"])) {
-   $userid = $_GET["p"];
-}
-?>
 <?php
-
-if (isset($_GET["checkout"])) {
-    $met_spedizione =  $_POST['metodospedizione'];
-    header ("location: checkout.php?p=$userid&m=$met_spedizione");
+if ((isset($_GET["p"])) && (isset($_GET["m"]))) {
+    $userid = $_GET["p"];
+    $met_sped_code = $_GET["m"];
+    
 }
 ?>
 
+<?php             
 
+$getaddress = mysql_query("SELECT * FROM carrello WHERE user_id = " . $userid);
+
+
+
+
+?>
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Il tuo carrello - NewEcommerce</title>
+    <title>Checkout - NewEcommerce</title>
     <link rel="stylesheet" href="style/style.css" type="text/css" media="screen" />
 </head>
 
@@ -45,13 +47,28 @@ if (isset($_GET["checkout"])) {
                     while ($row2 = mysql_fetch_array($query2)) {
                         $prod_name = $row2["prod_name"];
                         $prod_price = $row2["price"];
-                        $tot += $prod_quantity * $prod_price;
+                    $query3 = mysql_query("SELECT * FROM metodospedizione WHERE met_code_sped = " . $met_sped_code) or die(mysql_error());
+                    while ($row3 = mysql_fetch_array($query3)) {  
+                        $met_name = $row3["met_name"];
+                        $met_price = $row3["met_price"];
+                        
+                    }  
+
+                        $tot += $prod_quantity * $prod_price + $met_price;
                     }
                     $string = '<td><img src="inventory_images/' . $row["prod_code"] . '.jpg" ' . 'height=' . '"20px"></td><td id=' . '"carrello_td">' . $prod_name . "</td><td id=" . "carrello_td" . ">" . $prod_price . "€</td><td id=" . "carrello_td" . ">" . $prod_quantity . "</td><td id=" . "carrello_td" . ">" . $prod_price * $prod_quantity . "€</td>";
-                    echo $string . '<td> <a href="cart.php?n=' . $prod_cartnumber . ' ">cancella</a><br /> </td>';
+                    echo $string;
                     echo "</tr>";
                 }
                 ?>
+                <tr>
+                
+                    <td></td>  <td></td> <td><?php echo $met_name; ?></td>  <td><?php echo " $met_price €" ?></td>
+
+                    <td></td>  <td></td> <td></td> <td></td> <td>
+                     </td>
+                
+                </tr> 
                 <tr>
                 
                     <td></td>  <td></td> <td></td>  <td id="totale" colspan="2" style="text-align: right;"><?php echo "Totale: $tot €" ?></td>
@@ -61,39 +78,8 @@ if (isset($_GET["checkout"])) {
                 
                 </tr> 
 
-            </table><div id="checkout" align="right">
-             <form action="cart.php?checkout=<?php echo $userid; ?>" enctype="multipart/form-data" name="myForm" id="myform" method="post">  
-                 
-                 <?php
-
-/* effettuo una query sulla tabella delle categorie
- */
-$query = mysql_query("SELECT * FROM metodospedizione") or die("Err:" . mysql_error());
-$categoryCount = mysql_num_rows($query); // conto il numero di oggetti trovati
-if ($categoryCount > 0) { //se trovo almeno una categoria
-    /*
-     * Costruisco la mia lista di prodotti (finchè ne trovo nell'inventario).
-     * Creo delle variabili che conterranno i dati dei prodotti che vado 
-     * leggendo nella lista, e le concateno nella variabile principale
-     */
-    echo '<select name="metodospedizione" id="metodospedizione">';
-    while ($row = mysql_fetch_array($query)) {
-        $met_code_sped = $row["met_code_sped"];
-        $met_name = $row["met_name"];
-        $met_price = $row["met_price"];
-        echo '<option value="'.$met_code_sped .'">' .$met_name.' - '.$met_price.'€</option>';
-                                   
-            
-         
-        }
-        echo "</select>";
-    }
- else {
-    echo "No category";
-}
-?>
-                 <input type="submit" name="pay" id="button" value="Paga ora" />
-                     </form></div>
+            </table>
+            <p style="text-align: left; padding-left: 40px;"> <a href="cart.php" text-align="left">Modifica ordine</a></p>
             <br>
             <br>
             

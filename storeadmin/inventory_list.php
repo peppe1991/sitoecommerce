@@ -158,14 +158,7 @@ if ($productCount > 0) { //se trovo almeno un oggetto nell'inventario
                 il comando mysql per aggiungere l'oggetto nel daabase -->
                 <form action="inventory_list.php" enctype="multipart/form-data" name="myForm" id="myform" method="post">
                     <table width="90%" border="0" cellspacing="0" cellpadding="6">
-                        <tr>
-                            <td width="20%" align="right">Codice Prodotto</td>
-                            <td width="50%"><label>
-                                    <b>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <?php 
-                                    $prod_cod=$productCount+1;
-                                    echo "$prod_cod"; ?>
-                                    </b></label></td>
-                        </tr>
+                     
                         <tr>
                             <td width="20%" align="right">Nome prodotto</td>
                             <td width="80%"><label>
