@@ -30,6 +30,7 @@ if (isset($_GET["checkout"])) {
         <div id="pageContent">
             <?php
             $query = mysql_query("SELECT * FROM carrello WHERE user_id = " . $userid);
+            $n_rows = mysql_num_rows ($query);
             ?>
             <table id="carrello" width="600px">
                 <tr>
@@ -69,8 +70,8 @@ if (isset($_GET["checkout"])) {
 /* effettuo una query sulla tabella delle categorie
  */
 $query = mysql_query("SELECT * FROM metodospedizione") or die("Err:" . mysql_error());
-$categoryCount = mysql_num_rows($query); // conto il numero di oggetti trovati
-if ($categoryCount > 0) { //se trovo almeno una categoria
+$met_count = mysql_num_rows($query); // conto il numero di oggetti trovati
+if ($met_count > 0) { //se trovo almeno una categoria
     /*
      * Costruisco la mia lista di prodotti (finchè ne trovo nell'inventario).
      * Creo delle variabili che conterranno i dati dei prodotti che vado 
@@ -89,11 +90,18 @@ if ($categoryCount > 0) { //se trovo almeno una categoria
         echo "</select>";
     }
  else {
-    echo "No category";
+    echo "Nessun metodo di spedizione selezionabile";
 }
 ?>
+                 <?php 
+                 if ($n_rows != 0)
+                 {         
+                 ?>
                  <input type="submit" name="pay" id="button" value="Paga ora" />
                      </form></div>
+            <?php
+                 }
+                 ?>
             <br>
             <br>
             
