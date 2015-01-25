@@ -8,6 +8,7 @@ $sqlCommand = "CREATE TABLE IF NOT EXISTS transazione (
     data date NOT NULL,
     met_pay int(32) NOT NULL,
     ship_code int(4) NOT NULL,
+    tot int(4) NOT NULL,
     PRIMARY KEY (id),
     FOREIGN KEY(ship_code) REFERENCES metodospedizione(ship_code)
     )";

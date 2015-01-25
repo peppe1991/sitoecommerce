@@ -15,6 +15,17 @@ if (isset($_GET["checkout"])) {
     header ("location: checkout.php?p=$userid&m=$met_spedizione");
 }
 ?>
+<?php
+
+if (isset($_GET['n'])) {
+    $id_to_delete = $_GET['n'];
+    $query = mysql_query("DELETE FROM carrello WHERE user_id=$userid and cart_element=$id_to_delete") or die(mysql_error());
+    
+    header ("location: cart.php?p=$userid");
+}
+    
+
+?>
 
 
 
