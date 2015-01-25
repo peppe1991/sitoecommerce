@@ -13,7 +13,8 @@ if ((isset($_GET["pay"]))) {
     $ship_address =  $_POST['address'];
     $met_pag =  $_POST['met_pag'];
     
-   
+//   $sqlCommand = mysql_query("INSERT INTO transazione ( username, password, name, surname, cod_fisc, last_log_date, last_cart_mod_date)
+  //          VALUES ('$username', '$password', '$name', '$surname', '$fiscode', NOW(), NOW()) ") or die(mysql_error());
         
     header ("location: checkout.php?p=$userid&m=$met_spedizione");
 
