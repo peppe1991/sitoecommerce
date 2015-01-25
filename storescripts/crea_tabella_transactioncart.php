@@ -4,11 +4,13 @@ require_once 'connect_to_mysql.php';
 
 $sqlCommand = "CREATE TABLE IF NOT EXISTS transactioncart (
    trans_id int(32),
-   prod_code int (8),
-   item_n int (4),
-   PRIMARY KEY (trans_id, item_n),
-   FOREIGN KEY (trans_id) REFERENCES transazione (id),
-   FOREIGN KEY (prod_code) REFERENCES prodotto (prod_code)  
+   item_n int(4) NOT NULL auto_increment,
+   prod_name varchar(20) NOT NULL,
+   price int(8) NOT NULL,
+   quantity int(8) NOT NULL,
+   brand varchar(16) NOT NULL,
+   PRIMARY KEY (item_n, trans_id),
+   FOREIGN KEY (trans_id) REFERENCES transazione (id)
     )";
 
 if (mysql_query($sqlCommand)) 
