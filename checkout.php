@@ -13,8 +13,29 @@ if ((isset($_GET["pay"]))) {
     $ship_address =  $_POST['address'];
     $met_pag =  $_POST['met_pag'];
     
-//   $sqlCommand = mysql_query("INSERT INTO transazione ( username, password, name, surname, cod_fisc, last_log_date, last_cart_mod_date)
-  //          VALUES ('$username', '$password', '$name', '$surname', '$fiscode', NOW(), NOW()) ") or die(mysql_error());
+
+    $query = mysql_query("INSERT INTO transazione (user_id, data, pay_code, ship_code)"
+            . "VALUES ($userid, NOW(),$met_pag,$ship_address ") or die(mysql_error);
+    $trans_id = mysql_insert_id();
+    $query = mysql_query("SELECT * FROM carrello WHERE user_id=$userid") or die(mysql_error());
+    while ($row = mysql_fetch_array($query)) {
+        $prod_code = $row["prod_code"];
+        $quantity_bought = $row["quantity"];
+        $query2 = mysql_query("SELECT * FROM prodotto WHERE prod_code = $prod_code") or die(mysql_error());
+        $row2 = mysql_fetch_array($query2);
+        $quantity_instock = $row2["instock"];
+        $quantity_instock -= $quantity_bought;
+        $query2 = mysql_query("UPDATE prodotto SET instock=$quantity_instock WHERE prod_code=$prod_code");
+        
+        $query2 = mysql_query("INSERT INTO transactioncart (trans_id)"
+                . "VALUES($trans_id)") or die(mysql_error());
+        
+        
+        
+        $query2 = mysql_query ("DELETE FROM carrello WHERE user_id = $userid");
+    }
+}
+?>
         
     header ("location: checkout.php?p=$userid&m=$met_spedizione");
 
@@ -132,27 +153,3 @@ $query = mysql_query("SELECT * FROM carrello WHERE user_id = " . $userid);
     </div>
 </body>
 
-<?php
-if (!$BLABLABLA = 1) {
-    /*
-     * 
-     */
-    $query = mysql_query("INSERT INTO transazione (user_id, data, pay_code, ship_code)"
-            . "VALUES ($userid, NOW(),1,$ship_code ") or die(mysql_error);
-    $trans_id = mysql_insert_id();
-    $query = mysql_query("SELECT * FROM CARRELLO WHERE user_id=$userid") or die(mysql_error());
-    while
-    ($row = mysql_fetch_array($query)) {
-        $prod_code = $row["prod_code"];
-        $quantity_bought = $row["quantity"];
-        $query2 = mysql_query("SELECT * FROM prodotto WHERE prod_code = $prod_code") or die(mysql_error());
-        $row2 = mysql_fetch_array($query2);
-        $quantity_instock = row2["instock"];
-        $quantity_instock -= $quantity_bought;
-        $query2 = mysql_query("UPDATE prodotto SET instock=$quantity_instock WHERE prod_code=$prod_code");
-        $query2 = mysql_query("INSERT INTO transactioncart (trans_id)"
-                . "VALUES($trans_id)") or die(mysql_error());
-        $query2 = mysql_query ("DELETE FROM carrello WHERE user_id = $userid");
-    }
-}
-?>
