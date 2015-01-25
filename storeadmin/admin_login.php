@@ -39,7 +39,7 @@ if (isset($_POST["admin_name"]) && isset($_POST["admin_password"])) {
         while ($row = mysql_fetch_array($query)) {
             $admin_id = $row["id"];
         }
-        $_SESSION["id"] = $admin_id;
+        $_SESSION["admin_id"] = $admin_id;
         $_SESSION["admin_name"] = $manager;
         $_SESSION["admin_password"] = $password;
         $query= mysql_query("UPDATE amministratore SET last_log_date = NOW() WHERE id='$id' LIMIT 1");
