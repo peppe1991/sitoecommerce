@@ -90,10 +90,25 @@ $getaddress = mysql_query("SELECT * FROM carrello WHERE user_id = " . $userid);
 </body>
 
 <?php
-/* FUNZIONI QUANDO SI CLICCA PAGA ORA - DA SISTEMARE
-  if (isset($_POST["pay"]){
-
-  $sqlCommand = mysql_query("INSERT INTO transazione ( user_id, password, name, surname, cod_fisc, last_log_date)
-  VALUES ('$username', '$password', '$name', '$surname', '$fiscode', NOW()) ") or die(mysql_error());
-  } */
+if ($BLABLABLA = 1)
+{
+    /*
+     * 
+     */
+    $query = mysql_query ("INSERT INTO transazione (user_id, data, pay_code, ship_code)"
+            . "VALUES ($userid, NOW(),1,$ship_code ") or die(mysql_error);
+    $trans_id = mysql_insert_id();
+    $query = mysql_query ("SELECT * FROM CARRELLO WHERE user_id=$userid") or die (mysql_error());
+    while
+        ($row = mysql_fetch_array ($query))
+    {
+        $prod_code = $row["prod_code"];
+        $query2 = mysql_query("SELECT * FROM prodotto WHERE prod_code = $prod_code") or die (mysql_error());
+        
+        $query3 = mysql_query ("INSERT INTO transactioncart (trans_id)"
+                . "VALUES($trans_id)") or die (mysql_error()); 
+        
+    }
+    
+}
 ?>

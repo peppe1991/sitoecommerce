@@ -11,9 +11,9 @@ require "crea_tabella_utente.php";
 require "crea_tabella_categoria.php";
 require "crea_tabella_prodotto.php";
 require "crea_tabella_carrello.php";
-// require "crea_tabella_metodo_pagamento.php";
+require "crea_tabella_metodo_pagamento.php";
 require "crea_tabella_metodo_spedizione.php";
-// require "crea_tabella_transazione.php";
+require "crea_tabella_transazione.php";
 require "crea_tabella_indirizzo.php";
 
 echo "<br>" . "Tutte le tabelle sono state create";

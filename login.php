@@ -27,7 +27,7 @@ if (isset($_POST["username"]) && isset($_POST["password"])) {
      * ed effettuiamo la query "di controllo"
      */
     include "./storescripts/connect_to_mysql.php";
-    $query = mysql_query("SELECT * FROM utente WHERE username='$username' AND password='$password' LIMIT 1");
+    $query = mysql_query("SELECT id, last_cart_mod_date FROM utente WHERE username='$username' AND password='$password' LIMIT 1");
     $found = mysql_num_rows($query);
     if ($found == 1) 
         { 
