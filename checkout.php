@@ -99,9 +99,10 @@ if (!$BLABLABLA = 1) {
         $row2 = mysql_fetch_array($query2);
         $quantity_instock = row2["instock"];
         $quantity_instock -= $quantity_bought;
-        $query3 = mysql_query("UPDATE prodotto SET instock=$quantity_instock WHERE prod_code=$prod_code");
-        $query3 = mysql_query("INSERT INTO transactioncart (trans_id)"
+        $query2 = mysql_query("UPDATE prodotto SET instock=$quantity_instock WHERE prod_code=$prod_code");
+        $query2 = mysql_query("INSERT INTO transactioncart (trans_id)"
                 . "VALUES($trans_id)") or die(mysql_error());
+        $query2 = mysql_query ("DELETE FROM carrello WHERE user_id = $userid");
     }
 }
 ?>

@@ -19,7 +19,7 @@ include "user_verify_script.php"
                     <td id="admin_td"> <a href="./inventory_list.php"> <img src="../style/elencoprodotti.png" height="100px"> <br> Modifica Inventario </a></td> 
                     <td id="admin_td"><a href="./category_list.php"><img src="../style/category.png" height="100px"> <br> Modifica Categorie</a> </td> 
                     <td id="admin_td"> <a href="admin_list.php"><img src="../style/admin.png" height="100px"> <br>Modifica Amministratori</a></td> 
-                    <td id="admin_td"><img src="../style/fatture.png" height="100px"> <br>Fatture</td>
+                    <td id="admin_td"><a href="./transactions_list.php"><img src="../style/fatture.png" height="100px"> <br>Fatture</td>
                 </tr> 
                 <tr><td id="admin_td"><a href="shipping_list.php"><img src="../style/shipping_method.png" height="100px"> <br>Metodi di Spedizione</a></td>
                   </tr></table></div>

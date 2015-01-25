@@ -173,13 +173,6 @@ if ($productCount > 0) { //se trovo almeno un oggetto nell'inventario
                                 </label></td>
                         </tr>
                         <tr>
-                            <!-- <td align="right">Categoria</td>
-                            <td><label>
-                                    <select name="category" id="category">
-                                        <option value="Abbigliamento">Abbigliamento</option>
-                                    </select>
-                                </label></td> -->                        </tr>
-                        <tr>
                             <td align="right">Categoria</td>
                             <td> <?php
 
@@ -197,7 +190,6 @@ if ($categoryCount > 0) { //se trovo almeno una categoria
     while ($row = mysql_fetch_array($query)) {
         $cat_code = $row["cat_code"];
         $name = $row["name"];
-        $parent_code = $row["parent_code"];
         echo '<option value="'.$cat_code .'">' .$name .'</option>';
                                    
             
