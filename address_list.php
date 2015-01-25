@@ -72,7 +72,7 @@ if (isset($_POST['via']) && isset($_POST['citta']) && isset($_POST['cap']) && is
     /* Autorefresh per evitare che aggiornando la pagina dopo aver riempito il
      * form l'oggetto venga inserito due volte
      */
-    header("location: inventory_list.php");
+    header("location: address_list.php");
     exit();
 }
 ?>
@@ -82,7 +82,7 @@ if (isset($_POST['via']) && isset($_POST['citta']) && isset($_POST['cap']) && is
 $query = mysql_query("SELECT * FROM indirizzo WHERE user_id=$userid ORDER BY add_code") or die("Err:" . mysql_error());
 $addCount = mysql_num_rows($query); 
 if ($addCount > 0) { 
-   
+   $address_list = "";
     while ($row = mysql_fetch_array($query)) {
         $n = $row["add_code"];
         $via = $row["via"];
@@ -93,7 +93,7 @@ if ($addCount > 0) {
         $civico = $row ["civico"];
         $appartamento = $row["appart"];
         $provincia = $row["provincia"];
-        $address_list = "Indirizzo n.: $n -- via $via $civico $appartamento $citta $cap ($provincia) - Regione: $regione -Paese: $paese"
+        $address_list .= "Indirizzo n.: $n -- via $via $civico $appartamento $citta $cap ($provincia) - Regione: $regione -Paese: $paese"
                 . " &bull; "
                 . "<a href='address_list.php?userid=$userid&deleten=$n'>cancella</a><br />";
     }
@@ -116,7 +116,7 @@ if ($addCount > 0) {
             della pagina che contiene il form per aggiungee un nuovo
             elemento al'inventario
             -->
-            <div align="right" style="margin-right:32px;"><a href="inventory_list.php#inventoryForm">+ Aggiungi 
+            <div align="right" style="margin-right:32px;"><a href="address_list.php#myForm">+ Aggiungi 
                     un nuovo indirizzo</a></div>
             <div align="left" style="margin-left:24px;">
                 <h2>Lista inventario</h2>

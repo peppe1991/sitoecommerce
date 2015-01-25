@@ -17,12 +17,12 @@ if (isset($_SESSION["admin_id"])) {
 /* Cominciamo ad elaborare i dati del form solo se l'utente ha riempito entrambi
  * i campi.
  */
-if (isset($_POST["username"]) && isset($_POST["password"])) {
+if (isset($_POST["admin_name"]) && isset($_POST["admin_password"])) {
     /*ai dati inseriti applichiamo lo stesso tipo di "filtraggio" che abbiamo
      * applicato nella pagina di amministrazione
      */
-    $manager = preg_replace('#[^A-Za-z0-9]#i', '', $_POST["username"]); 
-    $password = md5(preg_replace('#[^A-Za-z0-9]#i', '', $_POST["password"]));
+    $manager = preg_replace('#[^A-Za-z0-9]#i', '', $_POST["admin_name"]); 
+    $password = md5(preg_replace('#[^A-Za-z0-9]#i', '', $_POST["admin_password"]));
     /* come nell'altra pagina includiamo lo script di connessione al database 
      * ed effettuiamo la query "di controllo"
      */
@@ -41,7 +41,7 @@ if (isset($_POST["username"]) && isset($_POST["password"])) {
         }
         $_SESSION["id"] = $admin_id;
         $_SESSION["admin_name"] = $manager;
-        $_SESSION["password"] = $password;
+        $_SESSION["admin_password"] = $password;
         $query= mysql_query("UPDATE amministratore SET last_log_date = NOW() WHERE id='$id' LIMIT 1");
         header("location: index.php");
         exit();
@@ -67,10 +67,10 @@ if (isset($_POST["username"]) && isset($_POST["password"])) {
                     <h2>Prego, inserire i propri dati di accesso</h2>
                     <form id="form1" name="form1" method="post" action="admin_login.php">
                         User Name:<br />
-                        <input name="username" type="text" id="username" size="40" />
+                        <input name="admin_name" type="text" id="username" size="40" />
                         <br /><br />
                         Password:<br />
-                        <input name="password" type="password" id="password" size="40" />
+                        <input name="admin_password" type="password" id="password" size="40" />
                         <br />
                         <br />
                         <br />

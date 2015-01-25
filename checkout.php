@@ -8,10 +8,39 @@ if ((isset($_GET["p"])) && (isset($_GET["m"]))) {
     $userid = $_GET["p"];
     $ship_code = $_GET["m"];
 }
+if ((isset($_GET["pay"]))) {
+    $userid = $_GET["pay"];
+    $ship_address =  $_POST['address'];
+    $met_pag =  $_POST['met_pag'];
+    
+   
+        
+    header ("location: checkout.php?p=$userid&m=$met_spedizione");
+
+
+    }
 ?>
 
 <?php
-$getaddress = mysql_query("SELECT * FROM carrello WHERE user_id = " . $userid);
+$query = mysql_query("SELECT * FROM indirizzo WHERE user_id=$userid ORDER BY add_code") or die("Err:" . mysql_error());
+$addCount = mysql_num_rows($query); 
+if ($addCount > 0) { 
+   $address_list = "";
+    while ($row = mysql_fetch_array($query)) {
+        $n = $row["add_code"];
+        $via = $row["via"];
+        $citta = $row["citta"];
+        $cap = $row["CAP"];
+        $regione = $row["regione"];
+        $paese = $row["paese"];
+        $civico = $row ["civico"];
+        $appartamento = $row["appart"];
+        $provincia = $row["provincia"];
+        $address_list .= "<input type='radio' name='address' value='$n'> Indirizzo n.: $n -- via $via $civico $appartamento $citta $cap ($provincia) - Regione: $regione -Paese: $paese <br>";
+    }
+        
+        
+ }
 ?>
 
 <head>
@@ -75,8 +104,28 @@ $query = mysql_query("SELECT * FROM carrello WHERE user_id = " . $userid);
             <p style="text-align: left; padding-left: 40px;"> <a href="cart.php" text-align="left">Modifica ordine</a></p>
             <br>
             <br>
+            <table id="checkout"><h3>Seleziona l'indirizzo a cui spedire l'ordine:</h3>  <form action="checkout.php?pay=<?php echo $userid; ?>" enctype="multipart/form-data" name="myForm" id="myform" method="post" >
+<?php echo $address_list; ?>
+            </table>
+            
+            <p> ------------------ </p>
+            
+                <table id="checkout"><h3>Seleziona il metodo con cui desidere pagare:</h3>
+<input type="radio" name="met_pag" value="creditcard" checked> Carta di Credito: <input name="creditcard" type="text" id="creditcard" size="40" />
+<br>
+<input type="radio" name="met_pag" value="bollettino">Bollettino postale (anticipato): C/C 8098800000.
+<br>
+<input type="radio" name="met_pag" value="bonifico">Bonifico Bancario (anticipato) C/C intestato a NewEcommerce IBAN IT80988000000000.
+<br>
+<input type="radio" name="met_pag" value="contrassegno">Contrassegno, pagamento alla consegna.
 
+                                <input type="submit" name="button" id="button" value="Conferma dati" />
 
+</form>
+                <br>
+                <br>
+                <br>
+            </table>
         </div>
 <?php include_once("template_footer.php"); ?>
     </div>
