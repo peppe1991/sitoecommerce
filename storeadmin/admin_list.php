@@ -5,8 +5,8 @@ include "user_verify_script.php"
 // Chiedo comferma per iniziare la procedura di eliminazione del prodotto
 if (isset($_GET['deleteid'])) {
     echo 'Vuoi veramente eliminare questo amministratore (CODICE ' . $_GET['deleteid'] . ')? '
-            . '<a href="admin_edit.php?yesdelete=' . $_GET['deleteid'] . '">Yes</a> | '
-            . '<a href="admin_edit.php">No</a>';
+            . '<a href="admin_list.php?yesdelete=' . $_GET['deleteid'] . '">Yes</a> | '
+            . '<a href="admin_list.php">No</a>';
     exit();
 }
 
@@ -21,7 +21,7 @@ if (isset($_GET['yesdelete']))
     /*ricarico la pagina attuale, sia che l'admin abbia deciso la cancellazione
      * dell'oggetto sia nel caso contrario.
      */
-    header("location: admin_edit.php");
+    header("location: admin_list.php");
     exit();
 }
 ?>
@@ -94,7 +94,7 @@ $sql = mysql_query("SELECT * FROM amministratore");
     echo "$email"."</td><td>";
     $date = $row["last_log_date"];
         echo "$date"."&nbsp; &nbsp; &nbsp; <a href='admin_edit.php?pid=$id'>edit</a> &bull; "
-                . "<a href='admin_edit.php?deleteid=$id'>delete</a></td></tr>";
+                . "<a href='admin_list.php?deleteid=$id'>delete</a></td></tr>";
        
     }
     

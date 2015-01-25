@@ -3,35 +3,6 @@ include "user_verify_script.php";
 include "../storescripts/connect_to_mysql.php";
 ?>
 
-
-
-<?php
-/* Ottengo i dati inseriti nel form e li traduco in una istruzione mysql per
- * inserire un nuovo oggetto nel database.
- */
-if (isset($_POST['shipping_name2'])) /* se è stato cliccato il bottone per
- * inserire un nuova categoria
- */ {
-    /*
-     * prendiamo i dati dalla variabile _POST prodotta dal form. la funzione 
-     * mysql_real_escape_string filtra di volta in volta il dato che a noi interessa
-     * memorizzare nella variabile. Tale funzione produce un errore se viene 
-     * utilizzata mentre non si è connessi al database 
-     */
-   // $product_code = mysql_real_escape_string($_POST['code']);
-    $pid = mysql_real_escape_string($_POST['thisID']);
-    $shipping_name2 = mysql_real_escape_string($_POST['shipping_name2']); 
-    $met_price= mysql_real_escape_string($_POST['met_price']); 
-    
-    
-    $sql = mysql_query("UPDATE  metodopagamento SET met_name='$shipping_name2', met_price='$met_price' WHERE met_code_sped = '$pid'") or die(mysql_error());
-    
-    
-    
-    header("location: shipping_list.php");
-    exit();
-}
-?>
 <?php
 /* prelevo le informazioni riguardanti l'oggetto selezionato e le inserisco
  * automaticamente in un form dove l'admin potrà vederle e decidere quali
@@ -51,7 +22,7 @@ if (isset($_GET['pid'])) /* se è settata la variabile che passiamo dall'altra
     if ($metCount > 0) {
         while ($row = mysql_fetch_array($sql)) {
             $shipping_id = $row["met_code_sped"];
-            $shipping_name2 = $row["met_name"];
+            $shipping_name = $row["met_name"];
             $met_price = $row["met_price"];
            
         }
@@ -64,6 +35,35 @@ if (isset($_GET['pid'])) /* se è settata la variabile che passiamo dall'altra
     }
 }
 ?>
+
+<?php
+/* Ottengo i dati inseriti nel form e li traduco in una istruzione mysql per
+ * inserire un nuovo oggetto nel database.
+ */
+if (isset($_POST['shipping_name2']) && isset($_POST['met_price2'])) /* se è stato cliccato il bottone per
+ * inserire un nuova categoria
+ */ {
+    /*
+     * prendiamo i dati dalla variabile _POST prodotta dal form. la funzione 
+     * mysql_real_escape_string filtra di volta in volta il dato che a noi interessa
+     * memorizzare nella variabile. Tale funzione produce un errore se viene 
+     * utilizzata mentre non si è connessi al database 
+     */
+   // $product_code = mysql_real_escape_string($_POST['code']);
+    $pid = mysql_real_escape_string($_GET['pid']);
+    $shipping_name2 = mysql_real_escape_string($_POST['shipping_name2']); 
+    $met_price2= mysql_real_escape_string($_POST['met_price2']); 
+    
+    
+    $sql = mysql_query("UPDATE  metodospedizione SET met_name='$shipping_name2', met_price='$met_price2' WHERE met_code_sped = '$pid'") or die(mysql_error());
+    
+    
+    
+    header("location: shipping_list.php");
+    exit();
+}
+?>
+
 
 
 
@@ -87,7 +87,7 @@ if (isset($_GET['pid'])) /* se è settata la variabile che passiamo dall'altra
                 l'aggiunta di un nuovo oggetto all'inventario in maniera
                 semplice e comoda. Una volta inseriti i dati il sistema eseguirà
                 il comando mysql per aggiungere l'oggetto nel daabase -->
-                <form action="shipping_list.php" enctype="multipart/form-data" name="myForm" id="myform" method="post">
+                <form action="shipping_edit.php?pid=<?php echo$_GET['pid']; ?>" enctype="multipart/form-data" name="myForm" id="myform" method="post">
                     <table width="90%" border="0" cellspacing="0" cellpadding="6">
                         <tr width="20%"> <td>Id metodo di spedizione: <b><?php echo $shipping_id; ?></b></td></tr>
                         <tr>
@@ -95,13 +95,13 @@ if (isset($_GET['pid'])) /* se è settata la variabile che passiamo dall'altra
                             
                             
                             <td width="80%"><label>
-                                    <input name="shipping_name2" type="text" id="shipping_name2" value='<?php echo $shipping_name2; ?>' size="64" />
+                                    <input name="shipping_name2" type="text" id="shipping_name2" value='<?php echo $shipping_name; ?>' size="64" />
                                 </label></td>
                         </tr>
                         <tr>
                             <td width="20%" align="right">Costo per il cliente</td>
                             <td width="80%"><label>
-                                    <input name="met_price" type="text" id="met_price" value='<?php echo $met_price; ?>' size="64" />
+                                    <input name="met_price2" type="text" id="met_price2" value='<?php echo $met_price; ?>' size="64" />
                                 </label></td>
                         </tr>
                          
