@@ -20,11 +20,6 @@ if (isset ($_POST["userid"]))
     $userid = $_POST["userid"];
     $query = mysql_query ("SELECT * FROM $query WHERE user_id=$user_id") or die (mysql_error());
 }
-if (isset ($_POST["prod_low_limit"]))
-{
-    $prod_low_limit = $_POST["prod_low_limit"];
-    $query2 = mysql_query("SELECT COUNT prod_code from ") or die (mysql_error());
-}
 if (isset ($_POST["ship_code"]))
 {
     $ship_code = $_POST["ship_code"];
@@ -173,12 +168,6 @@ if ($productCount > 0) { //se trovo almeno un oggetto nell'inventario
                                 <input name="userid" type="text" id="userid" size="64" />
                             </label></td>
                     </tr>
-                    <tr>
-                        <td align="right">N. prodotti venduti > di</td>
-                        <td><label>
-                                <input name="prod_low_limit" type="text" id="prod_low_limit" size="12" />
-                            </label></td>
-                    </tr>
                     <tr>                      </tr>
                     <tr>
                         <td align="right">Spediti Tramite</td>
@@ -204,7 +193,7 @@ if ($productCount > 0) { //se trovo almeno un oggetto nell'inventario
                             ?>
                     </tr>
                     <tr>
-                        <td align="left">Pagati con</td>
+                        <td align="right">Pagati con</td>
                         <td> <?php
                             $query = mysql_query("SELECT * FROM metodopag") or die("Err:" . mysql_error());
                             $metCount = mysql_num_rows($query); // conto il numero di oggetti trovati
