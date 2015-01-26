@@ -39,13 +39,7 @@ if ((isset($_GET["pay"]))) {
     }
 }
 ?>
-        
-    header ("location: checkout.php?p=$userid&m=$met_spedizione");
-
-
-    }
-?>
-
+       
 <?php
 $query = mysql_query("SELECT * FROM indirizzo WHERE user_id=$userid ORDER BY add_code") or die("Err:" . mysql_error());
 $addCount = mysql_num_rows($query); 
@@ -61,7 +55,7 @@ if ($addCount > 0) {
         $civico = $row ["civico"];
         $appartamento = $row["appart"];
         $provincia = $row["provincia"];
-        $address_list .= "<input type='radio' name='address' value='$n'> Indirizzo n.: $n -- via $via $civico $appartamento $citta $cap ($provincia) - Regione: $regione -Paese: $paese <br>";
+        $address_list .= "<input type='radio' name='address' value='$n'>   Indirizzo n.: $n -- via $via $civico $appartamento $citta $cap ($provincia) - Regione: $regione -Paese: $paese <br>";
     }
         
         
@@ -110,7 +104,7 @@ $query = mysql_query("SELECT * FROM carrello WHERE user_id = " . $userid);
             ?>
                 <tr>
 
-                    <td></td>  <td></td> <td><?php echo $met_name; ?></td>  <td><?php echo " $met_price €" ?></td>
+                    <td></td>  <td></td> <td><?php echo $met_name; ?></td> <td></td> <td><?php echo " $met_price €" ?></td>
 
                     <td></td>  <td></td> <td></td> <td></td> <td>
                     </td>
@@ -128,29 +122,31 @@ $query = mysql_query("SELECT * FROM carrello WHERE user_id = " . $userid);
             </table>
             <p style="text-align: left; padding-left: 40px;"> <a href="cart.php" text-align="left">Modifica ordine</a></p>
             <br>
-            <br>
-            <table id="checkout"><h3>Seleziona l'indirizzo a cui spedire l'ordine:</h3>  <form action="checkout.php?pay=<?php echo $userid; ?>" enctype="multipart/form-data" name="myForm" id="myform" method="post" >
+            <br><form action="checkout.php?pay=<?php echo $userid; ?>" enctype="multipart/form-data" name="myForm" id="myform" method="post" >
+            <table id="checkout"><h3>Seleziona l'indirizzo a cui spedire l'ordine:</h3>  
 <?php echo $address_list; ?>
+                    Puoi modificare i tuoi indirizzi dal tuo <a href="user_panel.php"> pannello utente</a>
             </table>
             
             <p> ------------------ </p>
             
                 <table id="checkout"><h3>Seleziona il metodo con cui desidere pagare:</h3>
-<input type="radio" name="met_pag" value="creditcard" checked> Carta di Credito: <input name="creditcard" type="text" id="creditcard" size="40" />
+<input type="radio" name="met_pag" value="creditcard" checked>   Carta di Credito: <input name="creditcard" type="text" id="creditcard" size="40" />
 <br>
-<input type="radio" name="met_pag" value="bollettino">Bollettino postale (anticipato): C/C 8098800000.
+<input type="radio" name="met_pag" value="bollettino">   Bollettino postale (anticipato): C/C 8098800000.
 <br>
-<input type="radio" name="met_pag" value="bonifico">Bonifico Bancario (anticipato) C/C intestato a NewEcommerce IBAN IT80988000000000.
+<input type="radio" name="met_pag" value="bonifico">   Bonifico Bancario (anticipato) C/C intestato a NewEcommerce IBAN IT80988000000000.
 <br>
-<input type="radio" name="met_pag" value="contrassegno">Contrassegno, pagamento alla consegna.
+<input type="radio" name="met_pag" value="contrassegno">   Contrassegno, pagamento alla consegna.
+<br>
+<br>
+                                <input type="submit" name="button" id="button" value="Conferma ordine" />
 
-                                <input type="submit" name="button" id="button" value="Conferma dati" />
 
-</form>
                 <br>
                 <br>
                 <br>
-            </table>
+            </table></form>
         </div>
 <?php include_once("template_footer.php"); ?>
     </div>

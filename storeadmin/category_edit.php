@@ -9,7 +9,7 @@ include "../storescripts/connect_to_mysql.php";
 /* Ottengo i dati inseriti nel form e li traduco in una istruzione mysql per
  * inserire un nuovo oggetto nel database.
  */
-if (isset($_POST['category_name'])) /* se è stato cliccato il bottone per
+if (isset($_POST['category_name2'])) /* se è stato cliccato il bottone per
  * inserire un nuova categoria
  */ {
     /*
@@ -19,10 +19,10 @@ if (isset($_POST['category_name'])) /* se è stato cliccato il bottone per
      * utilizzata mentre non si è connessi al database 
      */
    // $product_code = mysql_real_escape_string($_POST['code']);
-    $pid = mysql_real_escape_string($_POST['thisID']);
-    $category_name = mysql_real_escape_string($_POST['category_name']);
+    $pid = $_GET['pid'];
+    $category_name = mysql_real_escape_string($_POST['category_name2']);
     
-    
+ 
     $sql = mysql_query("UPDATE  categoria  SET name='$category_name' WHERE cat_code = '$pid'") or die(mysql_error());
     
     
@@ -40,16 +40,15 @@ if (isset($_GET['pid'])) /* se è settata la variabile che passiamo dall'altra
  * pagina (il codice del prodotto)
  * (si potrebbe filtrare un'altra volta ma è ridondante) 
  */ {
-    $targetID = $_GET['pid']; //salvo il codice su una nuova variabile
+    $category_id = $_GET['pid']; //salvo il codice su una nuova variabile
     /* query sul database per richiamare informazioni sul prodotto
      * 
      */
-    $sql = mysql_query("SELECT * FROM categoria WHERE cat_code='$targetID' LIMIT 1");
+    $sql = mysql_query("SELECT * FROM categoria WHERE cat_code='$category_id' LIMIT 1");
         $adminCount = mysql_num_rows($sql);
 
     if ($adminCount > 0) {
         while ($row = mysql_fetch_array($sql)) {
-            $category_id = $row["cat_code"];
             $category_name = $row["name"];
            
         }
@@ -85,7 +84,7 @@ if (isset($_GET['pid'])) /* se è settata la variabile che passiamo dall'altra
                 l'aggiunta di un nuovo oggetto all'inventario in maniera
                 semplice e comoda. Una volta inseriti i dati il sistema eseguirà
                 il comando mysql per aggiungere l'oggetto nel daabase -->
-                <form action="category_list.php" enctype="multipart/form-data" name="myForm" id="myform" method="post">
+                <form action="category_edit.php?pid=<?php echo $category_id; ?>" enctype="multipart/form-data" name="myForm" id="myform" method="post">
                     <table width="90%" border="0" cellspacing="0" cellpadding="6">
                         <tr width="20%"> <td>Id categoria: <b><?php echo $category_id; ?></b></td></tr>
                         <tr>
@@ -93,7 +92,7 @@ if (isset($_GET['pid'])) /* se è settata la variabile che passiamo dall'altra
                             
                             
                             <td width="80%"><label>
-                                    <input name="category_name" type="text" id="category_name" value='<?php echo $category_name; ?>' size="64" />
+                                    <input name="category_name2" type="text" id="category_name" value='<?php echo $category_name; ?>' size="64" />
                                 </label></td>
                         </tr>
                         
