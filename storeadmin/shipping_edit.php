@@ -16,12 +16,12 @@ if (isset($_GET['pid'])) /* se è settata la variabile che passiamo dall'altra
     /* query sul database per richiamare informazioni sul prodotto
      * 
      */
-    $sql = mysql_query("SELECT * FROM metodospedizione WHERE met_code_sped='$targetID' LIMIT 1");
+    $sql = mysql_query("SELECT * FROM metodospedizione WHERE ship_code='$targetID' LIMIT 1");
         $metCount = mysql_num_rows($sql);
 
     if ($metCount > 0) {
         while ($row = mysql_fetch_array($sql)) {
-            $shipping_id = $row["met_code_sped"];
+            $shipping_id = $row["ship_code"];
             $shipping_name = $row["met_name"];
             $met_price = $row["met_price"];
            
@@ -55,7 +55,7 @@ if (isset($_POST['shipping_name2']) && isset($_POST['met_price2'])) /* se è sta
     $met_price2= mysql_real_escape_string($_POST['met_price2']); 
     
     
-    $sql = mysql_query("UPDATE  metodospedizione SET met_name='$shipping_name2', met_price='$met_price2' WHERE met_code_sped = '$pid'") or die(mysql_error());
+    $sql = mysql_query("UPDATE  metodospedizione SET met_name='$shipping_name2', met_price='$met_price2' WHERE ship_code = '$pid'") or die(mysql_error());
     
     
     
