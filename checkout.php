@@ -3,19 +3,18 @@ require 'storescripts/connect_to_mysql.php';
 require 'user_verify_script.php';
 ?>
 
-<?php
-if ((isset($_GET["p"])) && (isset($_GET["m"]))) {
-    $userid = $_GET["p"];
-    $ship_code = $_GET["m"];
-}
-if ((isset($_GET["pay"]))) {
+<?php 
+if ((isset($_GET["pay"])) && (isset($_GET["ship"])) ) {
     $userid = $_GET["pay"];
-    $ship_address =  $_POST['address'];
-    $met_pag =  $_POST['met_pag'];
-    
+    $ship_code2 =  $_GET['ship'];
+    $met =  $_POST['met_pag'];
+    $ship_address = $_POST['address'];
+    echo "ciao";
+    echo $ship_address;
+    echo $met;
 
-    $query = mysql_query("INSERT INTO transazione (user_id, data, pay_code, ship_code)"
-            . "VALUES ($userid, NOW(),$met_pag,$ship_address ") or die(mysql_error);
+    $query = mysql_query("INSERT INTO transazione (user_id, pag_code, ship_code, data)"
+            . "VALUES ($userid, $met, $ship_code2, NOW() )") or die(mysql_error());
     $trans_id = mysql_insert_id();
     $query = mysql_query("SELECT * FROM carrello WHERE user_id=$userid") or die(mysql_error());
     while ($row = mysql_fetch_array($query)) {
@@ -24,10 +23,10 @@ if ((isset($_GET["pay"]))) {
         $query2 = mysql_query("SELECT * FROM prodotto WHERE prod_code = $prod_code") or die(mysql_error());
         $row2 = mysql_fetch_array($query2);
         $prod_name = $row2["prod_name"];
-        $price= $row["price"];
-        $brand = $row["brand"];
+        $price= $row2["price"];
+        $brand = $row2["brand"];
         $query2 = mysql_query ("INSERT INTO transactioncart (trans_id, prod_name, price, quantity, brand)"
-                . "VALUES ($trans_id , $prod_name, $price, $_quantity_bought, $_brand");
+                . "VALUES ($trans_id , $prod_name, $price, $quantity_bought, $brand");
         $quantity_instock = $row2["instock"];
         $quantity_instock -= $quantity_bought;
         $query2 = mysql_query("UPDATE prodotto SET instock=$quantity_instock WHERE prod_code=$prod_code");
@@ -36,8 +35,18 @@ if ((isset($_GET["pay"]))) {
         
         
         $query2 = mysql_query ("DELETE FROM carrello WHERE user_id = $userid");
+        header ("location: thanks.php");
     }
 }
+
+?>
+
+<?php
+if ((isset($_GET["p"])) && (isset($_GET["m"]))) {
+    $userid = $_GET["p"];
+    $ship_code = $_GET["m"];
+}
+
 ?>
        
 <?php
@@ -89,7 +98,7 @@ $query = mysql_query("SELECT * FROM carrello WHERE user_id = " . $userid);
                 while ($row2 = mysql_fetch_array($query2)) {
                     $prod_name = $row2["prod_name"];
                     $prod_price = $row2["price"];
-                    $query3 = mysql_query("SELECT * FROM metodospedizione WHERE ship_code = " . $ship_code) or die(mysql_error());
+                    $query3 = mysql_query("SELECT * FROM metodospedizione WHERE ship_code = $ship_code") or die(mysql_error());
                     while ($row3 = mysql_fetch_array($query3)) {
                         $met_name = $row3["met_name"];
                         $met_price = $row3["met_price"];
@@ -122,31 +131,31 @@ $query = mysql_query("SELECT * FROM carrello WHERE user_id = " . $userid);
             </table>
             <p style="text-align: left; padding-left: 40px;"> <a href="cart.php" text-align="left">Modifica ordine</a></p>
             <br>
-            <br><form action="checkout.php?pay=<?php echo $userid; ?>" enctype="multipart/form-data" name="myForm" id="myform" method="post" >
-            <table id="checkout"><h3>Seleziona l'indirizzo a cui spedire l'ordine:</h3>  
+            <br><form action="checkout.php?pay=<?php echo $userid; ?>&ship=<?php echo $ship_code; ?>" enctype="multipart/form-data" name="myForm" id="myform" method="post" >
+            <h3>Seleziona l'indirizzo a cui spedire l'ordine:</h3>  
 <?php echo $address_list; ?>
                     Puoi modificare i tuoi indirizzi dal tuo <a href="user_panel.php"> pannello utente</a>
-            </table>
             
             <p> ------------------ </p>
             
-                <table id="checkout"><h3>Seleziona il metodo con cui desidere pagare:</h3>
-<input type="radio" name="met_pag" value="creditcard" checked>   Carta di Credito: <input name="creditcard" type="text" id="creditcard" size="40" />
+                <h3>Seleziona il metodo con cui desidere pagare:</h3>
+<input type="radio" name="met_pag" value="'carta di credito'">   Carta di Credito: <input name="met_pag" type="text" size="40" />
 <br>
-<input type="radio" name="met_pag" value="bollettino">   Bollettino postale (anticipato): C/C 8098800000.
+<input type="radio" name="met_pag" value="'bollettino'">   Bollettino postale (anticipato): C/C 8098800000.
 <br>
-<input type="radio" name="met_pag" value="bonifico">   Bonifico Bancario (anticipato) C/C intestato a NewEcommerce IBAN IT80988000000000.
+<input type="radio" name="met_pag" value="'bonifico'">   Bonifico Bancario (anticipato) C/C intestato a NewEcommerce IBAN IT80988000000000.
 <br>
-<input type="radio" name="met_pag" value="contrassegno">   Contrassegno, pagamento alla consegna.
+<input type="radio" name="met_pag" value="'contrassegno'">   Contrassegno, pagamento alla consegna.
 <br>
 <br>
                                 <input type="submit" name="button" id="button" value="Conferma ordine" />
+                                
 
 
                 <br>
                 <br>
                 <br>
-            </table></form>
+            </form>
         </div>
 <?php include_once("template_footer.php"); ?>
     </div>

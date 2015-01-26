@@ -6,7 +6,7 @@ $sqlCommand = "CREATE TABLE IF NOT EXISTS transazione (
     id int(32) NOT NULL auto_increment,
     user_id int(32) NOT NULL,
     data date NOT NULL,
-    met_pay int(32) NOT NULL,
+    pag_code varchar(32) NOT NULL,
     ship_code int(4) NOT NULL,
     tot int(4) NOT NULL,
     PRIMARY KEY (id),
