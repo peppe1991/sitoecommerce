@@ -2,11 +2,10 @@
 <?php
 session_start();
 unset($_SESSION["id"]);
-$_SESSION["admin_name"] = "guest"; 
+unset ($_SESSION["admin_name"]); 
 ?>
 
-Sei stato disconnesso con successo.
 
 <?php
-header ("location: index.php");
+header ("location: ../index.php");
 ?>
