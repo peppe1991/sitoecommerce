@@ -1,5 +1,5 @@
 <?php
-include "user_verify_script.php"
+//include "user_verify_script.php"
 ?>
 
 <!DOCTYPE html>

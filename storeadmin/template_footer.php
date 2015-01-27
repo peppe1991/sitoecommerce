@@ -1,6 +1,6 @@
 <div id="pageFooter"> 
     <?php
-    if (isset($_SESSION["id"]))
+    if (isset($_SESSION["admin_id"]))
     {
         ?>Benvenuto <?php echo $_SESSION["admin_name"]; ?> (Non sei tu? Clicca: <a href="admin_logout.php"> Logout </a>)
     <?php

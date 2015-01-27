@@ -9,7 +9,7 @@
     }
     else
     { ?>
-        <a href="login.php"> Login </a> | <a href="sign_up.php"> Registrazione </a> | <a href="storeadmin">Amministrazione</a>
+                <a href="login.php"> Login </a> | <a href="sign_up.php"> Registrazione </a> | <a href="./storeadmin/admin_login.php">Amministrazione</a>
 
   <?php }?>   </div>
 <p> &copy; 2015 Adriano Todaro e Giuseppe Palazzotto </p>
