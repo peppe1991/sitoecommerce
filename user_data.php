@@ -15,11 +15,11 @@ $sql = mysql_query("SELECT * FROM utente WHERE id=$id LIMIT 1");
     $userCount = mysql_num_rows($sql);
     if ($userCount > 0) {
         while ($row = mysql_fetch_array($sql)) {
-            $id = $row["id"];
             $username = $row["username"];
-            $email = $row["email"];            
-            $date = $row["last_log_date"];
-                  
+            $name = $row["name"];
+            $surname = $row["surname"];
+            $cod_fisc = $row["cod_fisc"];
+            $email = $row["email"];                              
     }
     
         }
@@ -34,9 +34,8 @@ $sql = mysql_query("SELECT * FROM utente WHERE id=$id LIMIT 1");
  * i campi.
  */
 
-if(isset($_POST["username"]) || isset($_POST["passwordold"]) || isset($_POST["email"])){
+if(isset($_POST["username"]) || isset($_POST["passwordold"]) || isset($_POST["email"]) || isset($_POST["surname"]) || isset($_POST["name"]) || isset($_POST["cod_fisc"]) ){
 if( isset($_POST["passwordold"]) && isset($_POST["passwordnew"]) ){
-    $id = mysql_real_escape_string($_POST['thisID']);
     $passwordnew = md5(preg_replace('#[^A-Za-z0-9]#i', '', $_POST["passwordnew"]));
     $query = mysql_query("UPDATE utente SET password='$passwordnew' WHERE id='$id'") or die("Err:" . mysql_error());    
     $_SESSION["password"] = $passwordnew;
@@ -44,22 +43,68 @@ if( isset($_POST["passwordold"]) && isset($_POST["passwordnew"]) ){
 }
     
 
-if (isset($_POST["username"]) || isset($_POST["email"])) {
+if (isset($_POST["username"])) {
     /*ai dati inseriti applichiamo lo stesso tipo di "filtraggio" che abbiamo
      * applicato nella pagina di amministrazione
      */
-    $id = mysql_real_escape_string($_POST['thisID']);
     $username = preg_replace('#[^A-Za-z0-9]#i', '', $_POST["username"]); 
+
+    /* come nell'altra pagina includiamo lo script di connessione al database 
+     * ed effettuiamo la query "di controllo"
+     */
+    
+    $query = mysql_query("UPDATE utente SET username='$username' WHERE id='$id'") or die("Err:" . mysql_error());
+    $_SESSION["username"] = $username;
+}
+if (isset($_POST["email"])) {
+    /*ai dati inseriti applichiamo lo stesso tipo di "filtraggio" che abbiamo
+     * applicato nella pagina di amministrazione
+     */
     $email =  preg_replace('#[^A-Za-z0-9@.]#i', '', $_POST["email"]);
 
     /* come nell'altra pagina includiamo lo script di connessione al database 
      * ed effettuiamo la query "di controllo"
      */
     
-    $query = mysql_query("UPDATE utente SET username='$username', email='$email' WHERE id='$id'") or die("Err:" . mysql_error());
-    $_SESSION["username"] = $username;
+    $query = mysql_query("UPDATE utente SET email='$email' WHERE id='$id'") or die("Err:" . mysql_error());
 }
 
+if (isset($_POST["name"])) {
+    /*ai dati inseriti applichiamo lo stesso tipo di "filtraggio" che abbiamo
+     * applicato nella pagina di amministrazione
+     */
+    $name =  preg_replace('#[^A-Za-z0-9]#i', '', $_POST["name"]);
+
+    /* come nell'altra pagina includiamo lo script di connessione al database 
+     * ed effettuiamo la query "di controllo"
+     */
+    
+    $query = mysql_query("UPDATE utente SET name='$name' WHERE id='$id'") or die("Err:" . mysql_error());
+}
+if (isset($_POST["surname"])) {
+    /*ai dati inseriti applichiamo lo stesso tipo di "filtraggio" che abbiamo
+     * applicato nella pagina di amministrazione
+     */
+    $surname =  preg_replace('#[^A-Za-z0-9]#i', '', $_POST["surname"]);
+
+    /* come nell'altra pagina includiamo lo script di connessione al database 
+     * ed effettuiamo la query "di controllo"
+     */
+    
+    $query = mysql_query("UPDATE utente SET surname='$surname' WHERE id='$id'") or die("Err:" . mysql_error());
+}
+if (isset($_POST["cod_fisc"])) {
+    /*ai dati inseriti applichiamo lo stesso tipo di "filtraggio" che abbiamo
+     * applicato nella pagina di amministrazione
+     */
+    $cod_fisc =  preg_replace('#[^A-Za-z0-9]#i', '', $_POST["cod_fisc"]);
+
+    /* come nell'altra pagina includiamo lo script di connessione al database 
+     * ed effettuiamo la query "di controllo"
+     */
+    
+    $query = mysql_query("UPDATE utente SET cod_fisc='$cod_fisc' WHERE id='$id'") or die("Err:" . mysql_error());
+}
 header("location: user_panel.php");
 }
 
@@ -92,6 +137,31 @@ header("location: user_panel.php");
                                 </label></td>
                         </tr>
                         <tr>
+                            <td width="20%" align="right">Nome</td>
+                            <td width="80%"><label>
+                                    <input name="name" type="text" id="name" size="64" value="<?php echo $name; ?>" />
+                                </label></td>
+                        </tr>
+                        <tr>
+                            <td width="20%" align="right">Cognome</td>
+                            <td width="80%"><label>
+                                    <input name="surname" type="text" id="surname" size="64" value="<?php echo $surname; ?>" />
+                                </label></td>
+                        </tr>
+                        <tr>
+                            <td width="20%" align="right">Codice Fiscale</td>
+                            <td width="80%"><label>
+                                    <input name="cod_fisc" type="text" id="cod_fisc" size="64" value="<?php echo $cod_fisc; ?>" />
+                                </label></td>
+                        </tr>
+                        <tr>
+                            <td align="right">Email</td>
+                            <td><label>
+                 
+                                    <input name="email" type="text" id="email" size="12" value="<?php echo $email; ?>" />
+                                </label></td>
+                        </tr>
+                        <tr>
                             <td align="right">Inserisci vecchia password</td>
                             <td><label>
                                     <input name="passwordold" type="password" id="passwordold" size="12" value="<?php echo $password; ?>" />
@@ -103,13 +173,7 @@ header("location: user_panel.php");
                                     <input name="passwordnew" type="password" id="passwordnew" size="12" />
                                 </label></td>
                         </tr>
-                        <tr>
-                            <td align="right">Email</td>
-                            <td><label>
-                 
-                                    <input name="email" type="text" id="email" size="12" value="<?php echo $email; ?>" />
-                                </label></td>
-                        </tr>
+                        
                         
                             <td><label>
                                     <input name="thisID" type="hidden" value="<?php echo $id; ?>" />
