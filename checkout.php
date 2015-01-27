@@ -52,8 +52,9 @@ if ((isset($_GET["p"])) && (isset($_GET["m"]))) {
 <?php
 $query = mysql_query("SELECT * FROM indirizzo WHERE user_id=$userid ORDER BY add_code") or die("Err:" . mysql_error());
 $addCount = mysql_num_rows($query); 
+$address_list = "";
 if ($addCount > 0) { 
-   $address_list = "";
+   
     while ($row = mysql_fetch_array($query)) {
         $n = $row["add_code"];
         $via = $row["via"];
@@ -66,8 +67,13 @@ if ($addCount > 0) {
         $provincia = $row["provincia"];
         $address_list .= "<input type='radio' name='address' value='$n'>   Indirizzo n.: $n -- via $via $civico $appartamento $citta $cap ($provincia) - Regione: $regione -Paese: $paese <br>";
     }
+   $address_list .=  'Puoi modificare i tuoi indirizzi dal tuo <a href="user_panel.php"> pannello utente</a>';
+  
         
-        
+ }
+ else {
+    $address_list .=  '<b>ATTENZIONE:</b> Non hai attualmente inserito indirizzi di spedizione nel tuo profilo. Aggiungine almeno uno dal tuo <a href="user_panel.php"> pannello utente</a>'; 
+     
  }
 ?>
 
@@ -134,7 +140,7 @@ $query = mysql_query("SELECT * FROM carrello WHERE user_id = " . $userid);
             <br><form action="checkout.php?pay=<?php echo $userid; ?>&ship=<?php echo $ship_code; ?>" enctype="multipart/form-data" name="myForm" id="myform" method="post" >
             <h3>Seleziona l'indirizzo a cui spedire l'ordine:</h3>  
 <?php echo $address_list; ?>
-                    Puoi modificare i tuoi indirizzi dal tuo <a href="user_panel.php"> pannello utente</a>
+                   
             
             <p> ------------------ </p>
             
