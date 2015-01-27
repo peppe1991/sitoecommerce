@@ -172,3 +172,12 @@ a:active {
 #titolo_cart{
     border-right: 1px #CCC solid;
    }
+   
+   #selected{
+       background-color: yellow;
+       
+   }
+   #purchases:hover{
+       background-color: #CCC;
+       
+   }

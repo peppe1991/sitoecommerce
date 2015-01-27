@@ -18,7 +18,7 @@ include "user_verify_script.php"
                 <tr id="panel_menu">
                     <td id="panel_td" width="30%"> <a href="./user_data.php"> <img src="./style/editPD.png" height="100px"> <br> Modifica i dati personali </a></td> 
                     <td id="panel_td" width="30%"><a href="./address_list.php"><img src="./style/category.png" height="100px"> <br> Modifica Indirizzi</a> </td> 
-                    <td id="panel_td" width="30%"><img src="./style/fatture.png" height="100px"> <br>I miei acquisti</td>
+                    <td id="panel_td" width="30%"><a href="./my_purchases.php"><img src="./style/fatture.png" height="100px"> <br>I miei acquisti</a></td>
             </table>
             <br>
             <br>
