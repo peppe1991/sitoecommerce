@@ -45,9 +45,9 @@ $query = mysql_query("SELECT name, cat_code FROM categoria") or die (mysql_error
             <tr>
                     <?php
                     if (isset($_GET["p"])) {
-                        $query2 = mysql_query("SELECT * FROM categoria WHERE cat_code = 2 LIMIT 1") or die (mysql_error());
+                     /*   $query2 = mysql_query("SELECT * FROM categoria WHERE cat_code = 2 LIMIT 1") or die (mysql_error());
                         $row2 = mysql_fetch_array($query2);
-                        echo '<h3>'.$row2["name"].'</h3>';
+                        echo '<h3>'.$row2["name"].'</h3>';*/
                         $query = mysql_query("SELECT * FROM prodotto WHERE cat_code = " . $_GET["p"]) or die (mysql_error());
                         $num_prod = mysql_num_rows($query);
                         $count_prod = 0;
