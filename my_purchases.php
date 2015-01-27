@@ -54,7 +54,7 @@ $query = mysql_query ("SELECT * FROM transazione");
 if (isset ($_POST["userid"]))
 {
     $userid = $_POST["userid"];
-    $query = mysql_query ("SELECT * FROM $query WHERE user_id=$user_id") or die (mysql_error());
+    $query = mysql_query ("SELECT * FROM $query WHERE user_id=$userid") or die (mysql_error());
 }
 if (isset ($_POST["ship_code"]))
 {

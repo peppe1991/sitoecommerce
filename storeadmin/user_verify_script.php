@@ -3,8 +3,6 @@
 /*
  * Script che controlla se l'utente ha un cookie che lo identifica come admin.
  * Se ne è sprovvisto lo reindirizza alla pagina di login degli amministratori.
- */
-session_start(); /*
  * necessario quando si vuole lavorare con le variabili si sessione
  */
 $location_admin_login = "location: ./admin_login.php";

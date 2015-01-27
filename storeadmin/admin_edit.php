@@ -1,4 +1,5 @@
 <?php
+session_start();
 include "user_verify_script.php";
 include "../storescripts/connect_to_mysql.php";
 ?>
@@ -44,11 +45,11 @@ if (isset($_GET['pid'])) /* se è settata la variabile che passiamo dall'altra
 if(isset($_POST["username"]) || isset($_POST["passwordold"]) || isset($_POST["email"])){
 if( isset($_POST["passwordold"]) && isset($_POST["passwordnew"]) ){
     $pid = mysql_real_escape_string($_POST['thisID']);
-    $passwordnew = md5(preg_replace('#[^A-Za-z0-9]#i', '', $_POST["passwordnew"]));
-    $query = mysql_query("UPDATE amministratore SET password='$passwordnew' WHERE id='$pid'") or die("Err:" . mysql_error());    
+    $newpassword = md5(preg_replace('#[^A-Za-z0-9]#i', '', $_POST["passwordnew"]));
+    $query = mysql_query("UPDATE amministratore SET password='$newpassword' WHERE id='$pid'") or die("Err:" . mysql_error());    
    
     if ( $_SESSION["userid"] == $targetID ){
-    $_SESSION["password"] = $passwordnew;
+    $_SESSION["password"] = $newpassword;
  
 }
        

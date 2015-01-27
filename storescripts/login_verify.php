@@ -18,7 +18,7 @@ exit();
  */
 /*
  */
-$user_id = preg_replace('#[^0-9]#i','',$_SESSION["id"]); 
+$userid = preg_replace('#[^0-9]#i','',$_SESSION["id"]); 
 $username = preg_replace('#[^A-Za-z0-9]#i','',$_SESSION)["username"];
 $password = preg_replace('#[^A-Za-z0-9]#i','', $_SESSION ["password"]);
 
@@ -27,7 +27,7 @@ $password = preg_replace('#[^A-Za-z0-9]#i','', $_SESSION ["password"]);
 include "../storescripts/connect_to_mysql.php"; 
 /*ed effettuiamo la query
  */
-$query = mysql_query ("SELECT * FROM utente WHERE id='$user_id' AND username= '$username' AND password='$password' LIMIT 1");
+$query = mysql_query ("SELECT * FROM utente WHERE id='$userid' AND username= '$username' AND password='$password' LIMIT 1");
 $found = mysql_num_rows($query);
 if ($found == 0)
 {

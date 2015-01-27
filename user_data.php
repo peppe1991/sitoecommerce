@@ -34,11 +34,12 @@ $sql = mysql_query("SELECT * FROM utente WHERE id=$id LIMIT 1");
  * i campi.
  */
 
-if(isset($_POST["username"]) || isset($_POST["passwordold"]) || isset($_POST["email"]) || isset($_POST["surname"]) || isset($_POST["name"]) || isset($_POST["cod_fisc"]) ){
-if( isset($_POST["passwordold"]) && isset($_POST["passwordnew"]) ){
-    $passwordnew = md5(preg_replace('#[^A-Za-z0-9]#i', '', $_POST["passwordnew"]));
-    $query = mysql_query("UPDATE utente SET password='$passwordnew' WHERE id='$id'") or die("Err:" . mysql_error());    
-    $_SESSION["password"] = $passwordnew;
+if(isset($_POST["username"]) || isset($_POST["passwordold"]) || isset($_POST["email"])){
+if( isset($_POST["oldpassword"]) && isset($_POST["newpassword"]) ){
+    $id = mysql_real_escape_string($_POST['thisID']);
+    $newpassword = md5(preg_replace('#[^A-Za-z0-9]#i', '', $_POST["passwordnew"]));
+    $query = mysql_query("UPDATE utente SET password='$newpassword' WHERE id='$id'") or die("Err:" . mysql_error());    
+    $_SESSION["password"] = $newpassword;
 
 }
     
@@ -164,13 +165,13 @@ header("location: user_panel.php");
                         <tr>
                             <td align="right">Inserisci vecchia password</td>
                             <td><label>
-                                    <input name="passwordold" type="password" id="passwordold" size="12" value="<?php echo $password; ?>" />
+                                    <input name="oldpassword" type="password" id="oldpassword" size="12" value="<?php echo $password; ?>" />
                                 </label></td>
                         </tr>
                         <tr>
                             <td align="right">Vuoi aggiornare la password? Inseriscine una nuova</td>
                             <td><label>
-                                    <input name="passwordnew" type="password" id="passwordnew" size="12" />
+                                    <input name="newpassword" type="password" id="newpasswordn" size="12" />
                                 </label></td>
                         </tr>
                         

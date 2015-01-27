@@ -34,16 +34,16 @@ if (isset($_POST["username"]) && isset($_POST["password"])) {
         /* 
          */
         while ($row = mysql_fetch_array($query)) {
-            $user_id = $row["id"];
+            $userid = $row["id"];
             $cart_date =  strtotime($row["last_cart_mod_date"]);
         }
-        $_SESSION["userid"] = $user_id;
+        $_SESSION["userid"] = $userid;
         $_SESSION["username"] = $username;
         $_SESSION["password"] = $password;
-        $query = mysql_query ("UPDATE utente SET last_log_date = NOW() WHERE id='$user_id' LIMIT 1");
+        $query = mysql_query ("UPDATE utente SET last_log_date = NOW() WHERE id='$userid' LIMIT 1");
       if ($cart_date < strtotime (strtotime ('1 week ago', strtotime('now'))))
       {
-          $query = mysql_query ("DELETE FROM carrello WHERE user_id= $user_id");
+          $query = mysql_query ("DELETE FROM carrello WHERE user_id= $userid");
       }
         if ($_GET["c"] = 1)
         {

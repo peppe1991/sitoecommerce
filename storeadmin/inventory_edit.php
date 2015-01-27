@@ -1,4 +1,5 @@
 <?php
+session_start();
 require 'user_verify_script.php';
 require '../storescripts/connect_to_mysql.php';
 ?>

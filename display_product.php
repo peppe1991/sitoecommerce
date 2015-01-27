@@ -1,4 +1,5 @@
 <?php
+session_start();
 require ("./storescripts/connect_to_mysql.php");
 ?>
 <?php
@@ -8,7 +9,6 @@ $row = mysql_fetch_array($query);
 $cat_code = $row["cat_code"];
 $query2 = mysql_query('SELECT * FROM categoria WHERE cat_code = ' . $cat_code);
 $row2 = mysql_fetch_array($query2);
-session_start();
 ?>
 
 <?php

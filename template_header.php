@@ -3,8 +3,7 @@
 
 <div id="pageHeader"><table width="100%" border="0" cellspacing="0" cellpadding="12">
         <tr>
-            <!-- <td width="32%"><a href="index.php"><img src="style/header.jpg" alt="Logo" width="500" height="100"/></a></td>
-           --> <td width="68%" align="right"> 
+             <td width="68%" align="right"> 
                 <?php
                 if (isset($_SESSION["userid"])) {
                     ?><a href="cart.php"><?php

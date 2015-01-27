@@ -2,8 +2,7 @@
 /*
  * Script che controlla se l'utente ha una variabile di sessione che lo identifica come utente registrato.
  * Se ne è sprovvisto lo reindirizza alla pagina di login.
- */
-session_start(); /*
+ *
  * necessario quando si vuole lavorare con le variabili si sessione
  */
 $location_login = "location: login.php"; 

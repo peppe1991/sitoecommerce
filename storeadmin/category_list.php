@@ -1,4 +1,5 @@
 <?php
+session_start();
 include "user_verify_script.php";
 include "../storescripts/connect_to_mysql.php";
 ?>

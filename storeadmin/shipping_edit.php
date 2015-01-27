@@ -1,4 +1,5 @@
 <?php
+session_start();
 include "user_verify_script.php";
 include "../storescripts/connect_to_mysql.php";
 ?>
@@ -99,7 +100,7 @@ if (isset($_POST['shipping_name2']) && isset($_POST['met_price2'])) /* se è sta
                                 </label></td>
                         </tr>
                         <tr>
-                            <td width="20%" align="right">Costo per il cliente</td>
+                            <td width="20%" align="right">Costo per il cliente €</td>
                             <td width="80%"><label>
                                     <input name="met_price2" type="text" id="met_price2" value='<?php echo $met_price; ?>' size="64" />
                                 </label></td>

@@ -1,18 +1,17 @@
 <?php
+session_start();
 require 'storescripts/connect_to_mysql.php';
 require 'user_verify_script.php';
 ?>
 <?php
+   $userid = $_SESSION["userid"];
 
-if (isset($_GET["p"])) {
-   $userid = $_GET["p"];
-}
 ?>
 <?php
 
 if (isset($_GET["checkout"])) {
     $met_spedizione =  $_POST['metodospedizione'];
-    header ("location: checkout.php?p=$userid&m=$met_spedizione");
+    header ("location: checkout.php?m=$met_spedizione");
 }
 ?>
 <?php

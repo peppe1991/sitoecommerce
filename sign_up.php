@@ -56,9 +56,9 @@ if (isset($_POST["username"]) && isset($_POST["password"])
         session_start();
         $query = mysql_query("SELECT id FROM utente WHERE username='$username' AND password='$password' LIMIT 1");
         while ($row = mysql_fetch_array($query)) {
-            $user_id = $row["id"];
+            $userid = $row["id"];
         }
-        $_SESSION["userid"] = $user_id;
+        $_SESSION["userid"] = $userid;
         $_SESSION["username"] = $username;
         $_SESSION["password"] = $password;
         

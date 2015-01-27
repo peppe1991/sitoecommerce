@@ -1,4 +1,5 @@
 <?php
+session_start();
 include "user_verify_script.php"
 ?>
 <?php
